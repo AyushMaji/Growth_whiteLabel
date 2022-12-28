@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "799226416001",
+    "project_id": "olga-14137",
+    "storage_bucket": "olga-14137.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799226416001:android:781d1db98a1269bf217680",
+        "android_client_info": {
+          "package_name": "com.cfpc.olga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799226416001-4c59qjah20ckg7vo2jhiifp3jbfe4hn0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cfpc.olga",
+            "certificate_hash": "9db5fdf90a38c1717992ef06c36a83f84677a02a"
+          }
+        },
+        {
+          "client_id": "799226416001-gq912cnu8464pub46c91o2iqahnfqb78.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cfpc.olga",
+            "certificate_hash": "ca19c19596da2f10307c76edbf80f17cbba814b1"
+          }
+        },
+        {
+          "client_id": "799226416001-ov25nqdmj6qgghb3u5pp88uug45ste2p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cfpc.olga",
+            "certificate_hash": "65bb5a4f4a1294796ba668fb9505c4df264d2e53"
+          }
+        },
+        {
+          "client_id": "799226416001-r2tfbn8kqaeoh9tdr5q7i55k8ksndqc8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cfpc.olga",
+            "certificate_hash": "9e8be8a1c9ea2cbd7a4bb10d6d8dc2bba06b0d96"
+          }
+        },
+        {
+          "client_id": "799226416001-idkic4taa94je1gooeo653fbeuekand5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDktbOsCCWhupuZxsjwxVxgstdBkbRCuIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799226416001-idkic4taa94je1gooeo653fbeuekand5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
