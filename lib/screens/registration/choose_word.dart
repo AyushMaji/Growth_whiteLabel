@@ -25,28 +25,28 @@ class _ChooseWordState extends State<ChooseWord> {
   int? selectedIndex;
 
   final List<String> _wordName = [
-    // "Anxious",
-    // "Bored",
-   // "Confused",
-   // "Disorganized",
+    "Anxious",
+    "Bored",
+   "Confused",
+   "Disorganized",
     "Engaged in my Life",
-    //"Fatigued",
+    "Fatigued",
     "Feel Alive",
     "Happy",
     "Love my Life",
     "Positive",
     "Relaxed",
     "Satisfied with my Life",
-    // "Stressed",
+    "Stressed",
     "Strong",
-    //"Unhappy",
-    //"Upset",
+    "Unhappy",
+    "Upset",
   ];
 
     @override
   void initState(){
      super.initState();
-     Provider.of<StorageProvider>(context, listen: false).audioSpeak("Now select one word that represents how you would love your life to be.");
+     Provider.of<StorageProvider>(context, listen: false).audioSpeak("Select a word from the the list below that best describes the feeling connected to the image you have selected.");
   }
 
   @override
@@ -73,7 +73,8 @@ class _ChooseWordState extends State<ChooseWord> {
                   child: Padding(
                     padding: EdgeInsets.only(right: 15.w),
                     child: Text(
-                      getTranslated('how_you_love_your_life', context),
+                     // getTranslated('how_you_love_your_life', context),
+                     "Select a word from the the list below that best describes the feeling connected to the image you have selected.",
                       style: TextStyles.smallBoldTextStyle(context),
                       textAlign: TextAlign.start,
                     ),

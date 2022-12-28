@@ -45,7 +45,7 @@ class _GenderEmailNextState extends State<GenderEmailNext> {
     super.initState();
     final storeProvider = Provider.of<StorageProvider>(context, listen: false);
     Provider.of<StorageProvider>(context, listen: false)
-        .audioSpeak("Great ${storeProvider.name}, lets start your journey!");
+        .audioSpeak("${storeProvider.name},  let's take the next step to better understand where you are at in your life and where you would like to get to.");
     _emailContoller.text = storeProvider.email;
     print(" ========> First Time Initial Running <======== ");
     print(storeProvider.gender);
@@ -281,7 +281,7 @@ class _GenderEmailNextState extends State<GenderEmailNext> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            "Great ${storeValues.name}${getTranslated('lets_start', context)}",
+                                            "${storeValues.name},  let's take the next step to better understand where you are at in your life and where you would like to get to.",
                                             style:
                                                 TextStyles.smallBoldTextStyle(
                                                     context),

@@ -19,7 +19,7 @@ class _DeeperWidgetState extends State<DeeperWidget> {
   void initState() {
     super.initState();
     //initialText = getTranslated("friends", context);
-    Provider.of<StorageProvider>(context, listen: false).audioSpeak("Let’s dive a bit deeper and build your life wheel by establishing how you would currently rate where you are in each of  these areas of your life... 1 being awful and 10 being fantastic....Friends");
+    Provider.of<StorageProvider>(context, listen: false).audioSpeak("To move towards your ideal life, let's first explore how satisfied you are with the ten categories below.... 1 being very unsatisfied and 10 being Vary satisfied.");
 
   }
 
@@ -40,7 +40,8 @@ class _DeeperWidgetState extends State<DeeperWidget> {
                 child: Padding(
                   padding: EdgeInsets.only(right: 15.w),
                   child: Text(
-                    getTranslated('lets_drive_deeper', context),
+                   // getTranslated('lets_drive_deeper', context),
+                   "To move towards your ideal life, let's first explore how satisfied you are with the ten categories below.",
                      style: TextStyles.smallBoldTextStyle(context),
                     textAlign: TextAlign.start,
                   ),
@@ -52,7 +53,8 @@ class _DeeperWidgetState extends State<DeeperWidget> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              getTranslated('drive_rate', context),
+             // getTranslated('drive_rate', context),
+             "1 being very unsatisfied and 10 being Vary satisfied.",
               style: 
               TextStyle(
       color: ColorResources.getContinueTxtColor(context), 

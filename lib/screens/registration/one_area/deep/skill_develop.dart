@@ -30,30 +30,49 @@ class _SkillsToDevelopState extends State<SkillsToDevelop> {
   int? selectedIndex;
 
   final List<String> _wordName = [
-    "Resilience",
-    "Communicate",
-    "Self-reliability",
-    "Patience",
-    "Courage",
-    "Commitment",
-    "Willpower",
-    "Cautious",
+    // "Resilience",
+    // "Communicate",
+    // "Self-reliability",
+    // "Patience",
+    // "Courage",
+    // "Commitment",
+    // "Willpower",
+    // "Cautious",
+    // "Assertiveness",
+    // "Integrity",
+    // "Optimism",
+    // "Risk Taking",
+    // "Self confidence",
+    // "Empathy",
+    // "Flexibility",
+    // "Listening",
+    // "Persistence",
+    // "Pacing",
+
+    "Self-Awareness",
     "Assertiveness",
-    "Integrity",
-    "Optimism",
-    "Risk Taking",
-    "Self confidence",
-    "Empathy",
-    "Flexibility",
-    "Listening",
+    "Independence",
+    "Self-Belief",
+    "Passion",
+    "Organised",
+    "Network",
+    "Realistic",
+    "Flexible",
+    "Problem Solving",
+    "Motivation",
     "Persistence",
-    "Pacing",
+    "Optimism",
+    "Self-Care",
+    "Discipline",
+    "Pro-Active",
+    "Risk-Taking",
+    "Resilience",
   ];
 
   @override
   void initState() {
     super.initState();
-    Provider.of<StorageProvider>(context, listen: false).audioSpeak("What skill do I need to develop to achieve my goal.");
+    Provider.of<StorageProvider>(context, listen: false).audioSpeak("Now select one skill that if you were to develop, will help you stay on track and secure your success with this goal.");
 
   }
 
@@ -81,7 +100,8 @@ class _SkillsToDevelopState extends State<SkillsToDevelop> {
                     child: Padding(
                       padding: EdgeInsets.only(right: 15.w),
                       child: Text(
-                        getTranslated('what_skill_need_develop', context),
+                        //getTranslated('what_skill_need_develop', context),
+                        "Now select one skill that if you were to develop, will help you stay on track and secure your success with this goal.",
                         style: TextStyles.smallBoldTextStyle(context),
                         textAlign: TextAlign.start,
                       ),
@@ -113,7 +133,7 @@ class _SkillsToDevelopState extends State<SkillsToDevelop> {
                               print("final selected ===>>> ${storeValues.skillsDevelopIndex}");
                               print("final world list selected ===>>> ${storeValues.skillsDeveloptWordList}"); 
                          
-                            storeValues.updateSkillsDevelopIndex(index);
+                            storeValues.updateSkillsDevelopIndex(index);//!
                             print("now selected ===>>> $index");
                              Provider.of<StorageProvider>(context, listen: false).audioSpeak( _wordName[index]);
                           }

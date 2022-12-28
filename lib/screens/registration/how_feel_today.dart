@@ -49,7 +49,7 @@ class _HowFeelTodayState extends State<HowFeelToday> {
   void initState() {
     super.initState();
     Provider.of<StorageProvider>(context, listen: false).audioSpeak(
-        "Choose one picture that represents how you feel about life today.");
+        "Select one picture that represents how you feel about life today.");
   }
 
   @override
@@ -76,7 +76,8 @@ class _HowFeelTodayState extends State<HowFeelToday> {
                   child: Padding(
                     padding: EdgeInsets.only(right: 15.w),
                     child: Text(
-                      getTranslated('choose_a_picture', context),
+                     // getTranslated('choose_a_picture', context),
+                     "Select one picture that represents how you feel about life today.",
                       style: TextStyles.smallBoldTextStyle(context),
                       textAlign: TextAlign.start,
                     ),

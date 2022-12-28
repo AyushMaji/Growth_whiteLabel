@@ -1,4 +1,6 @@
 // ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:olga/screens/registration/one_area/physicalhealth_care/weight_screen.dart';
+import 'package:olga/screens/registration/one_area/spirituality/spirituality.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:olga/global/methods/methods.dart';
@@ -13,6 +15,14 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../../global/constants/images.dart';
 import '../../../provider/goal_planning_provider.dart';
 import '../../visionboard/visionboard.dart';
+import 'career_work/career_work.dart';
+import 'common/quesion_one.dart';
+import 'emotional_health/emotional_health.dart';
+import 'family/family.dart';
+import 'finances/finance.dart';
+import 'friends/friends.dart';
+import 'hobbies_fun/hobbies_fun.dart';
+import 'living_env/living_env.dart';
 
 class OneArea extends StatefulWidget {
   static const String id = "/oneArea";
@@ -50,7 +60,7 @@ class _OneAreaState extends State<OneArea> {
   @override
   void initState() {
     super.initState();
-    Provider.of<StorageProvider>(context, listen: false).audioSpeak("From your life wheel, select one area you would like to improve the most to help you move towards your ideal life.");
+    Provider.of<StorageProvider>(context, listen: false).audioSpeak("From your life wheel, select the first area you would like to start working on to help you move towards your ideal life");
 
 
   }
@@ -126,7 +136,8 @@ class _OneAreaState extends State<OneArea> {
                               child: Padding(
                                 padding: EdgeInsets.only(right: 10.w),
                                 child: Text(
-                                  getTranslated('life_wheel', context),
+                                 // getTranslated('life_wheel', context),
+                                 "From your life wheel, select the first area you would like to start working on to help you move towards your ideal life",
                                   style: TextStyles.smallBoldTextStyle(context),
                                   textAlign: TextAlign.start,
                                 ),
@@ -524,7 +535,8 @@ class _OneAreaState extends State<OneArea> {
           );
           }
         ),
-        bottomSheet: Padding(
+        bottomSheet:  Consumer<StorageProvider>(builder: (context, _storeValues, child){
+       return Padding(
           padding: EdgeInsets.fromLTRB(15.sp, 0, 15.sp, 15.sp),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -538,10 +550,87 @@ class _OneAreaState extends State<OneArea> {
                       final storeValues = Provider.of<StorageProvider>(context, listen: false);
                       storeValues.addOneSelectedAre(oneSelectedAre);
                       storeValues.updateSelectedAreId(oneSelectedAreId);
-                      Provider.of<StorageProvider>(context, listen: false)
-                  .registrationSafetyNet(route: OneAreaVideo.id);
-                      goPageWithName(context, OneAreaVideo.id);
+                  //     Provider.of<StorageProvider>(context, listen: false)
+                  // .registrationSafetyNet(route: OneAreaVideo.id);
+                  //     goPageWithName(context, OneAreaVideo.id);
                       print("===>>> going to user choice screen");
+                      if (_storeValues.oneSelectedArea ==
+                                "Romance & Intimacy") {
+                              Provider.of<StorageProvider>(context,
+                                      listen: false)
+                                  .registrationSafetyNet(
+                                      route: RomanceIntimacyGoal.id);
+                              goPageWithName(context, RomanceIntimacyGoal.id);
+                              print("romanceIntimacy");
+                            } else if (_storeValues.oneSelectedArea ==
+                                "Friends") {
+                              Provider.of<StorageProvider>(context,
+                                      listen: false)
+                                  .registrationSafetyNet(route: Friends.id);
+                              goPageWithName(context, Friends.id);
+                              print("friends");
+                            } else if (_storeValues.oneSelectedArea ==
+                                "Family") {
+                              Provider.of<StorageProvider>(context,
+                                      listen: false)
+                                  .registrationSafetyNet(route: Family.id);
+                              goPageWithName(context, Family.id);
+                              print("family");
+                            } else if (_storeValues.oneSelectedArea ==
+                                "Physical Health & Self-care") {
+                              Provider.of<StorageProvider>(context,
+                                      listen: false)
+                                  .registrationSafetyNet(
+                                      route: WeightScreen.id);
+                              goPageWithName(context, WeightScreen.id);
+                              print("physicalHealth");
+                            } else if (_storeValues.oneSelectedArea ==
+                                "Hobbies/Recreation/Fun") {
+                              Provider.of<StorageProvider>(context,
+                                      listen: false)
+                                  .registrationSafetyNet(route: HobbiesFun.id);
+                              goPageWithName(context, HobbiesFun.id);
+                              print("hobbiesFun");
+                            } else if (_storeValues.oneSelectedArea ==
+                                "Finances") {
+                              Provider.of<StorageProvider>(context,
+                                      listen: false)
+                                  .registrationSafetyNet(route: Finances.id);
+                              goPageWithName(context, Finances.id);
+                              print("finances");
+                            } else if (_storeValues.oneSelectedArea ==
+                                "Emotional Health") {
+                              Provider.of<StorageProvider>(context,
+                                      listen: false)
+                                  .registrationSafetyNet(
+                                      route: EmotionalHealth.id);
+                              goPageWithName(context, EmotionalHealth.id);
+                              print("emotionalHealth");
+                            } else if (_storeValues.oneSelectedArea ==
+                                "Career & Work") {
+                              Provider.of<StorageProvider>(context,
+                                      listen: false)
+                                  .registrationSafetyNet(route: CareerWork.id);
+                              goPageWithName(context, CareerWork.id);
+                              print("careerWork");
+                            } else if (_storeValues.oneSelectedArea ==
+                                "Spirituality") {
+                              Provider.of<StorageProvider>(context,
+                                      listen: false)
+                                  .registrationSafetyNet(
+                                      route: Spirituality.id);
+                              goPageWithName(context, Spirituality.id);
+                              print("spirituality");
+                            } else if (_storeValues.oneSelectedArea ==
+                                "Living Environment") {
+                              Provider.of<StorageProvider>(context,
+                                      listen: false)
+                                  .registrationSafetyNet(route: LivingEnv.id);
+                              goPageWithName(context, LivingEnv.id);
+                              print("livingEnv");
+                            } else {
+                              print("this area is not selected");
+                            }
                     }
                   : null,
               child: Text(
@@ -549,9 +638,9 @@ class _OneAreaState extends State<OneArea> {
               ),
             ),
           ),
-        ),
+        );}
       ),
-    );
+    ));
   }
 }
 

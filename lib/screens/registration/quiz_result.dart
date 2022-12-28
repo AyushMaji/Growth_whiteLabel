@@ -146,6 +146,12 @@ class _QuizResultState extends State<QuizResult> {
                   ],
                 ),
               ),
+              
+             Padding(
+                padding: EdgeInsets.all(15.sp),
+                child: Text("Let's design goals that inspire you and the roadmap that will get you there. You are more capable than you realise. Take action and you will thrive.", style: TextStyles.smallBoldTextStyle(context),),
+              ),
+
               Visibility(
                 visible: AppConstants.hideButton,
                 child: Row(
@@ -171,25 +177,36 @@ class _QuizResultState extends State<QuizResult> {
                 visible: AppConstants.isVisible,
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        SizedBox(height: 10.h),
-                        Image.asset(
-                          Images.lifeScaleFlip,
-                          width: 150.w,
-                        ),
-                        SizedBox(width: 10.w),
-                        Flexible(
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 15.w),
-                            child: Text(
-                              getTranslated('imagine_going_beyond', context),
-                              style: TextStyles.smallBoldTextStyle(context),
-                              textAlign: TextAlign.start,
+                    Padding(
+                    padding: EdgeInsets.only(left:15.sp),
+                      child: Row(
+                        children: [
+                          SizedBox(height: 10.h),
+                          // Image.asset(
+                          //   Images.lifeScaleFlip,
+                          //   width: 150.w,
+                          // ),
+                           Flexible(
+                            child: Image.asset(
+                                   Images.userPlaceholder,
+                                    width: 60.w,
+                                  ),
+                          ),
+                          SizedBox(width: 10.w),
+                          Flexible(
+                            flex: 4,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 15.w),
+                              child: Text(
+                               // getTranslated('imagine_going_beyond', context),
+                               "Imagine going beyond your current circumstances. Think about the changes you want...",
+                                style: TextStyles.smallBoldTextStyle(context),
+                                textAlign: TextAlign.start,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(height: 15.sp),
                     RichText(
@@ -198,7 +215,8 @@ class _QuizResultState extends State<QuizResult> {
                         style: const TextStyle(color: Colors.black),
                         children: [
                           TextSpan(
-                            text: getTranslated("jonas_edward", context),
+                            text: "Socrates ",
+                            //getTranslated("jonas_edward", context),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14.sp,
@@ -217,7 +235,8 @@ class _QuizResultState extends State<QuizResult> {
                     Padding(
                       padding: EdgeInsets.all(15.w),
                       child: Text(
-                        getTranslated("hope_lies_dreams", context),
+                       // getTranslated("hope_lies_dreams", context),
+                       "The secret of change is to focus all of your energy not on fighting the old, but on building the new.",
                         textAlign: TextAlign.center,
                         style: TextStyles.labelTextStyle(context),
                       ),
@@ -227,17 +246,25 @@ class _QuizResultState extends State<QuizResult> {
                       children: [
                         SizedBox(height: 10.sp),
                         Flexible(
+                          flex: 4,
                           child: Padding(
                             padding: EdgeInsets.only(left: 15.w),
                             child: Text(
-                              getTranslated('start_building_new', context),
+                             // getTranslated('start_building_new', context),
+                             "Start imagining the new, by building a mental picture of what this would look like for you.",
                               style: TextStyles.smallBoldTextStyle(context),
                               textAlign: TextAlign.start,
                             ),
                           ),
                         ),
                         SizedBox(width: 10.w),
-                        Image.asset(Images.lifeScale, width: 150.w),
+                        //Image.asset(Images.lifeScale, width: 150.w),
+                         Flexible(
+                            child: Image.asset(
+                                   Images.userPlaceholder,
+                                    width: 60.w,
+                                  ),
+                          ),
                       ],
                     ),
                     SizedBox(height: 35.w),

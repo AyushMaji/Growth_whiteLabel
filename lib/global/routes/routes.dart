@@ -7,16 +7,80 @@ import 'package:olga/screens/company/company.dart';
 import 'package:olga/screens/registration/deepeer/life_wheel.dart';
 import 'package:olga/screens/registration/gender_email_next.dart';
 import 'package:olga/screens/registration/imcomplete_profile.dart';
+import 'package:olga/screens/registration/one_area/career_work/Work_life_balance.dart';
+import 'package:olga/screens/registration/one_area/career_work/career_growth.dart';
+import 'package:olga/screens/registration/one_area/career_work/cv_resume.dart';
 import 'package:olga/screens/registration/one_area/career_work/different_areas.dart';
 import 'package:olga/screens/registration/one_area/career_work/happy_with_career.dart';
 import 'package:olga/screens/registration/one_area/career_work/happy_with_skills.dart';
+import 'package:olga/screens/registration/one_area/career_work/remuneration.dart';
+import 'package:olga/screens/registration/one_area/career_work/skills_qualifications.dart';
+import 'package:olga/screens/registration/one_area/career_work/social_responsibility.dart';
+import 'package:olga/screens/registration/one_area/career_work/vision_screen.dart';
+import 'package:olga/screens/registration/one_area/emotional_health/Mood.dart';
 import 'package:olga/screens/registration/one_area/emotional_health/emotional_health.dart';
+import 'package:olga/screens/registration/one_area/emotional_health/self-control_emotional.dart';
+import 'package:olga/screens/registration/one_area/emotional_health/self_management_emotional.dart';
+import 'package:olga/screens/registration/one_area/emotional_health/self_regard.dart';
+import 'package:olga/screens/registration/one_area/emotional_health/social_skills.dart';
+import 'package:olga/screens/registration/one_area/family/acceptance.dart';
+import 'package:olga/screens/registration/one_area/family/boundaries.dart';
+import 'package:olga/screens/registration/one_area/family/communication_forFamily.dart';
+import 'package:olga/screens/registration/one_area/family/extended_family.dart';
 import 'package:olga/screens/registration/one_area/family/family.dart';
+import 'package:olga/screens/registration/one_area/family/life_family_balance.dart';
+import 'package:olga/screens/registration/one_area/family/respect.dart';
+import 'package:olga/screens/registration/one_area/family/time_management.dart';
+import 'package:olga/screens/registration/one_area/finances/assistance_screen.dart';
+import 'package:olga/screens/registration/one_area/finances/budgeting_screen.dart';
+import 'package:olga/screens/registration/one_area/finances/credit_screen.dart';
+import 'package:olga/screens/registration/one_area/finances/debt_screen.dart';
 import 'package:olga/screens/registration/one_area/finances/finance.dart';
+import 'package:olga/screens/registration/one_area/finances/financial_health.dart';
+import 'package:olga/screens/registration/one_area/finances/financial_planning.dart';
+import 'package:olga/screens/registration/one_area/finances/retirement_screen.dart';
+import 'package:olga/screens/registration/one_area/friends/acceptance.dart';
+import 'package:olga/screens/registration/one_area/friends/assertiveness.dart';
+import 'package:olga/screens/registration/one_area/friends/balance.dart';
+import 'package:olga/screens/registration/one_area/friends/communication.dart';
+import 'package:olga/screens/registration/one_area/friends/growth.dart';
 import 'package:olga/screens/registration/one_area/friends/happy_with_support.dart';
+import 'package:olga/screens/registration/one_area/friends/respect.dart';
+import 'package:olga/screens/registration/one_area/friends/support.dart';
+import 'package:olga/screens/registration/one_area/hobbies_fun/adventure_hobby.dart';
+import 'package:olga/screens/registration/one_area/hobbies_fun/growth_hobby.dart';
 import 'package:olga/screens/registration/one_area/hobbies_fun/hobbies_fun.dart';
+import 'package:olga/screens/registration/one_area/hobbies_fun/recreation_hobby.dart';
+import 'package:olga/screens/registration/one_area/hobbies_fun/routine_hobby.dart';
+import 'package:olga/screens/registration/one_area/hobbies_fun/self_care_hooby.dart';
+import 'package:olga/screens/registration/one_area/hobbies_fun/skills_hobby.dart';
+import 'package:olga/screens/registration/one_area/hobbies_fun/stress_management.dart';
+import 'package:olga/screens/registration/one_area/living_env/Accommodation.dart';
+import 'package:olga/screens/registration/one_area/living_env/Lifestyle.dart';
+import 'package:olga/screens/registration/one_area/living_env/NatureForLiving.dart';
+import 'package:olga/screens/registration/one_area/living_env/Personal_Space.dart';
+import 'package:olga/screens/registration/one_area/living_env/Safety.dart';
+import 'package:olga/screens/registration/one_area/living_env/Technology.dart';
+import 'package:olga/screens/registration/one_area/living_env/Wellbeing.dart';
 import 'package:olga/screens/registration/one_area/living_env/living_env.dart';
+import 'package:olga/screens/registration/one_area/physicalhealth_care/emotional_health.dart';
+import 'package:olga/screens/registration/one_area/physicalhealth_care/mindfulness.dart';
+import 'package:olga/screens/registration/one_area/physicalhealth_care/sleep5.dart';
+import 'package:olga/screens/registration/one_area/physicalhealth_care/time_management.dart';
+import 'package:olga/screens/registration/one_area/romance/boundaries.dart';
+import 'package:olga/screens/registration/one_area/romance/conflict_management.dart';
+import 'package:olga/screens/registration/one_area/romance/growth.dart';
+import 'package:olga/screens/registration/one_area/romance/intimacy.dart';
+import 'package:olga/screens/registration/one_area/romance/life_balance.dart';
+import 'package:olga/screens/registration/one_area/romance/personal_rights.dart';
+import 'package:olga/screens/registration/one_area/romance/relationship_goals.dart';
 import 'package:olga/screens/registration/one_area/romance/romance_intimacy.dart';
+import 'package:olga/screens/registration/one_area/spirituality/BeliefsForSpiri.dart';
+import 'package:olga/screens/registration/one_area/spirituality/Service_toOthers.dart';
+import 'package:olga/screens/registration/one_area/spirituality/Spiritual_Intelligence.dart';
+import 'package:olga/screens/registration/one_area/spirituality/growth_for_spiritual.dart';
+import 'package:olga/screens/registration/one_area/spirituality/respect_rights_forSpiri.dart';
+import 'package:olga/screens/registration/one_area/spirituality/social_resp.dart';
 import 'package:olga/screens/registration/one_area/spirituality/spirituality.dart';
 import 'package:olga/screens/visionboard/common_screens/successful.dart';
 import 'package:olga/screens/visionboard/drawer/password/forgot_password_opt.dart';
@@ -80,9 +144,12 @@ import '../../screens/registration/one_area/living_env/happy_where_live.dart';
 import '../../screens/registration/one_area/living_env/happy_with_relaxing.dart';
 import '../../screens/registration/one_area/living_env/living_different_areas.dart';
 import '../../screens/registration/one_area/physicalhealth_care/level_of_selfCare.dart';
+import '../../screens/registration/one_area/physicalhealth_care/weight_wheel_screen.dart';
+import '../../screens/registration/one_area/physicalhealth_care/wellbeing.dart';
 import '../../screens/registration/one_area/romance/different_areas_r.dart';
 import '../../screens/registration/one_area/romance/happy_with_freedom.dart';
 import '../../screens/registration/one_area/romance/happy_with_sex_life.dart';
+import '../../screens/registration/one_area/spirituality/philanthropy.dart';
 import '../../screens/registration/one_area/spirituality/spiritual_different_areas.dart';
 import '../../screens/registration/one_area/spirituality/happy_spiritual_expression.dart';
 import '../../screens/registration/one_area/spirituality/meaing_of_life.dart';
@@ -250,4 +317,75 @@ var routes = <String, WidgetBuilder>{
 
 
   LevelSelfCare.id: (context) => const LevelSelfCare(),
+  SleepWheel.id: (context) => const SleepWheel(),
+  WellBeingWheel.id: (context) => const WellBeingWheel(),
+  WeightWheel.id: (context) => const WeightWheel(),
+  EmotionalWheel.id: (context) => const EmotionalWheel(),
+  TimeManagementWheel.id: (context) => const TimeManagementWheel(),
+  MindfulnessWheel.id: (context) => const MindfulnessWheel(),
+  DebtScreen.id: (context) => const DebtScreen(),
+  FinancialHealthScreen.id: (context) => const FinancialHealthScreen(),
+  BudgetingScreen.id: (context) => const BudgetingScreen(),
+  FinancialPlanningScreen.id: (context) => const FinancialPlanningScreen(),
+  RetirementScreen.id: (context) => const RetirementScreen(),
+  CreditScreen.id: (context) => const CreditScreen(),
+  AssistanceScreen.id: (context) => const AssistanceScreen(),
+  VisionScreen.id: (context) => const VisionScreen(),
+  SocialResponsibilityScreen.id: (context) => const SocialResponsibilityScreen(),
+  WorkLifeBalanceScreen.id: (context) => const WorkLifeBalanceScreen(),
+  RemunerationScreen.id: (context) => const RemunerationScreen(),
+  CVResumeScreen.id: (context) => const CVResumeScreen(),
+  CareerGrowthScreen.id: (context) => const CareerGrowthScreen(),
+  SkillsQualificationsScreen.id: (context) => const SkillsQualificationsScreen(),
+  PersonalRights.id: (context) => const PersonalRights(),
+  BoundariesScreen.id: (context) => const BoundariesScreen(),
+  GrowthScreen.id: (context) => const GrowthScreen(),
+  RelationshipGoalsScreen.id: (context) => const RelationshipGoalsScreen(),
+  LifeBalanceScreen.id: (context) => const LifeBalanceScreen(),
+  IntimacyScreen.id: (context) => const IntimacyScreen(),
+  ConflictManagementScreen.id: (context) => const ConflictManagementScreen(),
+  AcceptanceScreen.id: (context) => const AcceptanceScreen(),
+  BalanceScreen.id: (context) => const BalanceScreen(),
+  CommunicationScreen.id: (context) => const CommunicationScreen(),
+  AssertivenessScreen.id: (context) => const AssertivenessScreen(),
+  SupportScreen.id: (context) => const SupportScreen(),
+  RespectScreen.id: (context) => const RespectScreen(),
+  GrowthScreenForFriend.id: (context) => const GrowthScreenForFriend(),
+  TimeManagementScreen.id: (context) => const TimeManagementScreen(),
+  ExtendedFamilyScreen.id: (context) => const ExtendedFamilyScreen(),
+  AcceptanceScreenForFamily.id: (context) => const AcceptanceScreenForFamily(),
+  RespectScreenForFamily.id: (context) => const RespectScreenForFamily(),
+  BoundariesScreenForFamily.id: (context) => const BoundariesScreenForFamily(),
+  CommunicationScreenForFamily.id: (context) => const CommunicationScreenForFamily(),
+  FamilyBalanceScreenForFamily.id: (context) => const FamilyBalanceScreenForFamily(),
+
+  //
+  RecreationHobby.id: (context) => const RecreationHobby(),
+  SelfCareHobby.id: (context) => const SelfCareHobby(),
+  GrowthHobby.id: (context) => const GrowthHobby(),
+  StressManagement.id: (context) => const StressManagement(),
+  Adventure.id: (context) => const Adventure(),
+  SkillsHobby.id: (context) => const SkillsHobby(),
+  RoutineHobby.id: (context) => const RoutineHobby(),
+  SelfControl.id: (context) => const SelfControl(),
+  SelfManagement.id: (context) => const SelfManagement(),
+  SelfRegard.id: (context) => const SelfRegard(),
+  SocialSkills.id: (context) => const SocialSkills(),
+  Mood.id: (context) => const Mood(),
+  GrowthForSpiritual.id: (context) => const GrowthForSpiritual(),
+  ServicetoOthers.id: (context) => const ServicetoOthers(),
+  SocialRes.id: (context) => const SocialRes(),
+  Philanthropy.id: (context) => const Philanthropy(),
+  SpiritualIntelligence.id: (context) => const SpiritualIntelligence(),
+  RespectOrRights.id: (context) => const RespectOrRights(),
+  BeliefsForSpiri.id: (context) => const BeliefsForSpiri(),
+  PersonalSpace.id: (context) => const PersonalSpace(),
+  Technology.id: (context) => const Technology(),
+  NatureForLiving.id: (context) => const NatureForLiving(),
+  Accommodation.id: (context) => const Accommodation(),
+  Lifestyle.id: (context) => const Lifestyle(),
+  Safety.id: (context) => const Safety(),
+  Wellbeing.id: (context) => const Wellbeing(),
+  //
+
 };

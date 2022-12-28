@@ -54,16 +54,11 @@ class _FriendsDifferentAreasState extends State<FriendsDifferentAreas> {
               SizedBox(height: 10.h),
               Stack(
                 children: [
-                   Transform(
-                        transform: Matrix4.rotationZ(
-                            -0.999000), //===============================Transform to rotated the graph
-                        alignment: FractionalOffset.center,
-                    child: Image.asset(
-                      'assets/images/Friends.png',
-                      //Images.healthCare,
-                      width: 260.w,
-                    ),
-                  ),
+                   Image.asset(
+                     'assets/images/Friends.png',
+                     //Images.healthCare,
+                     fit: BoxFit.cover,
+                   ),
                   Positioned(
                       // top: 21,
                       // left: 20.5,
@@ -75,7 +70,7 @@ class _FriendsDifferentAreasState extends State<FriendsDifferentAreas> {
                       // left: -0.5.w,
                       child: Transform(
                         transform: Matrix4.rotationZ(
-                            -0.999000), //===============================Transform to rotated the graph
+                            0.30), //===============================Transform to rotated the graph
                         alignment: FractionalOffset.center,
                         child: Opacity(
                           opacity: 0.5,
@@ -101,38 +96,38 @@ class _FriendsDifferentAreasState extends State<FriendsDifferentAreas> {
                                       ((storageValue.response1 + 1)
                                                   .toString() ==
                                               '10')
-                                          ? '84.5%'
+                                          ? '81%'
                                           : (((storageValue.response1 + 1)
                                                       .toString() ==
                                                   '9')
-                                              ? '75.5%'
+                                              ? '74%'
                                               : (((storageValue.response1 + 1)
                                                           .toString() ==
                                                       '8')
-                                                  ? '69%'
+                                                  ? '68%'
                                                   : (((storageValue.response1 + 1)
                                                               .toString() ==
                                                           '7')
-                                                      ? '63%'
+                                                      ? '60%'
                                                       : (((storageValue.response1 + 1)
                                                                   .toString() ==
                                                               '6')
-                                                          ? '56%'
+                                                          ? '54%'
                                                           : (((storageValue.response1 + 1)
                                                                       .toString() ==
                                                                   '5')
-                                                              ? '48%'
+                                                              ? '47%'
                                                               : (((storageValue.response1 + 1)
                                                                           .toString() ==
                                                                       '4')
-                                                                  ? '42%'
+                                                                  ? '41%'
                                                                   : (((storageValue.response1 + 1).toString() ==
                                                                           '3')
-                                                                      ? '35%'
+                                                                      ? '34%'
                                                                       : (((storageValue.response1 + 1).toString() == '2')
-                                                                          ? '28%'
+                                                                          ? '26%'
                                                                           : (((storageValue.response1 + 1).toString() == '1')
-                                                                              ? '21%'
+                                                                              ? '20%'
                                                                               : "0")))))))))),
                                   ChartData(
                                       'USA',
@@ -140,93 +135,358 @@ class _FriendsDifferentAreasState extends State<FriendsDifferentAreas> {
                                       ((storageValue.response2 + 1)
                                                   .toString() ==
                                               '10')
-                                          ? '84.5%'
-                                          : ((storageValue.response2 +
-                                                          1)
+                                          ? '81%'
+                                          : (((storageValue.response2 + 1)
                                                       .toString() ==
                                                   '9')
-                                              ? '75.5%'
-                                              : ((storageValue.response2 +
-                                                              1)
+                                              ? '74%'
+                                              : (((storageValue.response2 + 1)
                                                           .toString() ==
                                                       '8')
-                                                  ? '69%'
-                                                  : ((storageValue.response2 +
-                                                                  1)
+                                                  ? '68%'
+                                                  : (((storageValue.response2 + 1)
                                                               .toString() ==
                                                           '7')
-                                                      ? '63%'
-                                                      : ((storageValue.response2 +
-                                                                      1)
+                                                      ? '60%'
+                                                      : (((storageValue.response2 + 1)
                                                                   .toString() ==
                                                               '6')
-                                                          ? '56%'
-                                                          : ((storageValue.response2 +
-                                                                          1)
+                                                          ? '54%'
+                                                          : (((storageValue.response2 + 1)
                                                                       .toString() ==
                                                                   '5')
-                                                              ? '48%'
-                                                              : ((storageValue.response2 +
-                                                                              1)
+                                                              ? '47%'
+                                                              : (((storageValue.response2 + 1)
                                                                           .toString() ==
                                                                       '4')
-                                                                  ? '42%'
-                                                                  : ((storageValue.response2 + 1)
-                                                                              .toString() ==
+                                                                  ? '41%'
+                                                                  : (((storageValue.response2 + 1).toString() ==
                                                                           '3')
-                                                                      ? '35%'
-                                                                      : ((storageValue.response2 + 1).toString() ==
-                                                                              '2')
-                                                                          ? '28%'
-                                                                          : ((storageValue.response2 + 1).toString() == '1')
-                                                                              ? '21%'
-                                                                              : "0"),
+                                                                      ? '34%'
+                                                                      : (((storageValue.response2 + 1).toString() == '2')
+                                                                          ? '26%'
+                                                                          : (((storageValue.response2 + 1).toString() == '1')
+                                                                              ? '20%'
+                                                                              : "0")))))))))),
                                   ChartData(
                                       'USA',
                                       12,
                                       ((storageValue.response3 + 1)
                                                   .toString() ==
                                               '10')
-                                          ? '84.5%'
-                                          : ((storageValue.response3 + 1)
+                                          ? '81%'
+                                          : (((storageValue.response3 + 1)
                                                       .toString() ==
                                                   '9')
-                                              ? '75.5%'
-                                              : ((storageValue.response3 +
-                                                              1)
+                                              ? '74%'
+                                              : (((storageValue.response3 + 1)
                                                           .toString() ==
                                                       '8')
-                                                  ? '69%'
-                                                  : ((storageValue.response3 +
-                                                                  1)
+                                                  ? '68%'
+                                                  : (((storageValue.response3 + 1)
                                                               .toString() ==
                                                           '7')
-                                                      ? '63%'
-                                                      : ((storageValue.response3 +
-                                                                      1)
+                                                      ? '60%'
+                                                      : (((storageValue.response3 + 1)
                                                                   .toString() ==
                                                               '6')
-                                                          ? '56%'
-                                                          : ((storageValue.response3 +
-                                                                          1)
+                                                          ? '54%'
+                                                          : (((storageValue.response3 + 1)
                                                                       .toString() ==
                                                                   '5')
-                                                              ? '48%'
-                                                              : ((storageValue.response3 +
-                                                                              1)
+                                                              ? '47%'
+                                                              : (((storageValue.response3 + 1)
                                                                           .toString() ==
                                                                       '4')
-                                                                  ? '42%'
-                                                                  : ((storageValue.response3 + 1)
-                                                                              .toString() ==
+                                                                  ? '41%'
+                                                                  : (((storageValue.response3 + 1).toString() ==
                                                                           '3')
-                                                                      ? '35%'
-                                                                      : ((storageValue.response3 + 1).toString() ==
-                                                                              '2')
-                                                                          ? '28%'
-                                                                          : ((storageValue.response3 + 1).toString() == '1')
-                                                                              ? '21%'
-                                                                              : "0"),
+                                                                      ? '34%'
+                                                                      : (((storageValue.response3 + 1).toString() == '2')
+                                                                          ? '26%'
+                                                                          : (((storageValue.response3 + 1).toString() == '1')
+                                                                              ? '20%'
+                                                                              : "0")))))))))),
+     
+                                  ChartData(
+                                      'USA',
+                                      12,
+                                      ((storageValue.response4 + 1)
+                                                  .toString() ==
+                                              '10')
+                                          ? '81%'
+                                          : (((storageValue.response4 + 1)
+                                                      .toString() ==
+                                                  '9')
+                                              ? '74%'
+                                              : (((storageValue.response4 + 1)
+                                                          .toString() ==
+                                                      '8')
+                                                  ? '68%'
+                                                  : (((storageValue.response4 + 1)
+                                                              .toString() ==
+                                                          '7')
+                                                      ? '60%'
+                                                      : (((storageValue.response4 + 1)
+                                                                  .toString() ==
+                                                              '6')
+                                                          ? '54%'
+                                                          : (((storageValue.response4 + 1)
+                                                                      .toString() ==
+                                                                  '5')
+                                                              ? '47%'
+                                                              : (((storageValue.response4 + 1)
+                                                                          .toString() ==
+                                                                      '4')
+                                                                  ? '41%'
+                                                                  : (((storageValue.response4 + 1).toString() ==
+                                                                          '3')
+                                                                      ? '34%'
+                                                                      : (((storageValue.response4 + 1).toString() == '2')
+                                                                          ? '26%'
+                                                                          : (((storageValue.response4 + 1).toString() == '1')
+                                                                              ? '20%'
+                                                                              : "0")))))))))),
+     
+                                  ChartData(
+                                      'USA',
+                                      12,
+                                      ((storageValue.response5 + 1)
+                                                  .toString() ==
+                                              '10')
+                                          ? '81%'
+                                          : (((storageValue.response5 + 1)
+                                                      .toString() ==
+                                                  '9')
+                                              ? '74%'
+                                              : (((storageValue.response5 + 1)
+                                                          .toString() ==
+                                                      '8')
+                                                  ? '68%'
+                                                  : (((storageValue.response5 + 1)
+                                                              .toString() ==
+                                                          '7')
+                                                      ? '60%'
+                                                      : (((storageValue.response5 + 1)
+                                                                  .toString() ==
+                                                              '6')
+                                                          ? '54%'
+                                                          : (((storageValue.response5 + 1)
+                                                                      .toString() ==
+                                                                  '5')
+                                                              ? '47%'
+                                                              : (((storageValue.response5 + 1)
+                                                                          .toString() ==
+                                                                      '4')
+                                                                  ? '41%'
+                                                                  : (((storageValue.response5 + 1).toString() ==
+                                                                          '3')
+                                                                      ? '34%'
+                                                                      : (((storageValue.response5 + 1).toString() == '2')
+                                                                          ? '26%'
+                                                                          : (((storageValue.response5 + 1).toString() == '1')
+                                                                              ? '20%'
+                                                                              : "0")))))))))),
+     
+                                  ChartData(
+                                      'USA',
+                                      12,
+                                      ((storageValue.response6 + 1)
+                                                  .toString() ==
+                                              '10')
+                                          ? '81%'
+                                          : (((storageValue.response6 + 1)
+                                                      .toString() ==
+                                                  '9')
+                                              ? '74%'
+                                              : (((storageValue.response6 + 1)
+                                                          .toString() ==
+                                                      '8')
+                                                  ? '68%'
+                                                  : (((storageValue.response6 + 1)
+                                                              .toString() ==
+                                                          '7')
+                                                      ? '60%'
+                                                      : (((storageValue.response6 + 1)
+                                                                  .toString() ==
+                                                              '6')
+                                                          ? '54%'
+                                                          : (((storageValue.response6 + 1)
+                                                                      .toString() ==
+                                                                  '5')
+                                                              ? '47%'
+                                                              : (((storageValue.response6 + 1)
+                                                                          .toString() ==
+                                                                      '4')
+                                                                  ? '41%'
+                                                                  : (((storageValue.response6 + 1).toString() ==
+                                                                          '3')
+                                                                      ? '34%'
+                                                                      : (((storageValue.response6 + 1).toString() == '2')
+                                                                          ? '26%'
+                                                                          : (((storageValue.response6 + 1).toString() == '1')
+                                                                              ? '20%'
+                                                                              : "0")))))))))),
+     
+                                  ChartData(
+                                      'USA',
+                                      12,
+                                      ((storageValue.response7 + 1)
+                                                  .toString() ==
+                                              '10')
+                                          ? '81%'
+                                          : (((storageValue.response7 + 1)
+                                                      .toString() ==
+                                                  '9')
+                                              ? '74%'
+                                              : (((storageValue.response7 + 1)
+                                                          .toString() ==
+                                                      '8')
+                                                  ? '68%'
+                                                  : (((storageValue.response7 + 1)
+                                                              .toString() ==
+                                                          '7')
+                                                      ? '60%'
+                                                      : (((storageValue.response7 + 1)
+                                                                  .toString() ==
+                                                              '6')
+                                                          ? '54%'
+                                                          : (((storageValue.response7 + 1)
+                                                                      .toString() ==
+                                                                  '5')
+                                                              ? '47%'
+                                                              : (((storageValue.response7 + 1)
+                                                                          .toString() ==
+                                                                      '4')
+                                                                  ? '41%'
+                                                                  : (((storageValue.response7 + 1).toString() ==
+                                                                          '3')
+                                                                      ? '34%'
+                                                                      : (((storageValue.response7 + 1).toString() == '2')
+                                                                          ? '26%'
+                                                                          : (((storageValue.response7 + 1).toString() == '1')
+                                                                              ? '20%'
+                                                                              : "0")))))))))),
+     
+                                  ChartData(
+                                      'USA',
+                                      12,
+                                      ((storageValue.response8 + 1)
+                                                  .toString() ==
+                                              '10')
+                                          ? '81%'
+                                          : (((storageValue.response8 + 1)
+                                                      .toString() ==
+                                                  '9')
+                                              ? '74%'
+                                              : (((storageValue.response8 + 1)
+                                                          .toString() ==
+                                                      '8')
+                                                  ? '68%'
+                                                  : (((storageValue.response8 + 1)
+                                                              .toString() ==
+                                                          '7')
+                                                      ? '60%'
+                                                      : (((storageValue.response8 + 1)
+                                                                  .toString() ==
+                                                              '6')
+                                                          ? '54%'
+                                                          : (((storageValue.response8 + 1)
+                                                                      .toString() ==
+                                                                  '5')
+                                                              ? '47%'
+                                                              : (((storageValue.response8 + 1)
+                                                                          .toString() ==
+                                                                      '4')
+                                                                  ? '41%'
+                                                                  : (((storageValue.response8 + 1).toString() ==
+                                                                          '3')
+                                                                      ? '34%'
+                                                                      : (((storageValue.response8 + 1).toString() == '2')
+                                                                          ? '26%'
+                                                                          : (((storageValue.response8 + 1).toString() == '1')
+                                                                              ? '20%'
+                                                                              : "0")))))))))),
+     
+                                  ChartData(
+                                      'USA',
+                                      12,
+                                      ((storageValue.response9 + 1)
+                                                  .toString() ==
+                                              '10')
+                                          ? '81%'
+                                          : (((storageValue.response9 + 1)
+                                                      .toString() ==
+                                                  '9')
+                                              ? '74%'
+                                              : (((storageValue.response9 + 1)
+                                                          .toString() ==
+                                                      '8')
+                                                  ? '68%'
+                                                  : (((storageValue.response9 + 1)
+                                                              .toString() ==
+                                                          '7')
+                                                      ? '60%'
+                                                      : (((storageValue.response9 + 1)
+                                                                  .toString() ==
+                                                              '6')
+                                                          ? '54%'
+                                                          : (((storageValue.response9 + 1)
+                                                                      .toString() ==
+                                                                  '5')
+                                                              ? '47%'
+                                                              : (((storageValue.response9 + 1)
+                                                                          .toString() ==
+                                                                      '4')
+                                                                  ? '41%'
+                                                                  : (((storageValue.response9 + 1).toString() ==
+                                                                          '3')
+                                                                      ? '34%'
+                                                                      : (((storageValue.response9 + 1).toString() == '2')
+                                                                          ? '26%'
+                                                                          : (((storageValue.response9 + 1).toString() == '1')
+                                                                              ? '20%'
+                                                                              : "0")))))))))),
+     
+                                  ChartData(
+                                      'USA',
+                                      12,
+                                      ((storageValue.response10 + 1)
+                                                  .toString() ==
+                                              '10')
+                                          ? '81%'
+                                          : (((storageValue.response10 + 1)
+                                                      .toString() ==
+                                                  '9')
+                                              ? '74%'
+                                              : (((storageValue.response10 + 1)
+                                                          .toString() ==
+                                                      '8')
+                                                  ? '68%'
+                                                  : (((storageValue.response10 + 1)
+                                                              .toString() ==
+                                                          '7')
+                                                      ? '60%'
+                                                      : (((storageValue.response10 + 1)
+                                                                  .toString() ==
+                                                              '6')
+                                                          ? '54%'
+                                                          : (((storageValue.response10 + 1)
+                                                                      .toString() ==
+                                                                  '5')
+                                                              ? '47%'
+                                                              : (((storageValue.response10 + 1)
+                                                                          .toString() ==
+                                                                      '4')
+                                                                  ? '41%'
+                                                                  : (((storageValue.response10 + 1).toString() ==
+                                                                          '3')
+                                                                      ? '34%'
+                                                                      : (((storageValue.response10 + 1).toString() == '2')
+                                                                          ? '26%'
+                                                                          : (((storageValue.response10 + 1).toString() == '1')
+                                                                              ? '20%'
+                                                                              : "0")))))))))),
                                 ],
                                 xValueMapper: (ChartData data, _) => data.xVal,
                                 yValueMapper: (ChartData data, _) => data.yVal,

@@ -46,6 +46,7 @@ class _GenderEmailState extends State<GenderEmail> {
   bool _male = false;
   bool _female = false;
   bool _nonbinary = false;
+  bool _opt_out = false;
   bool _unLockedIdentify = false;
   bool _emailActive = true;
 
@@ -78,9 +79,11 @@ class _GenderEmailState extends State<GenderEmail> {
                       Row(
                         children: [
                           SizedBox(height: 10.sp),
-                          Image.asset(
-                            Images.userPlaceholder,
-                            width: 60.w,
+                          ClipOval(
+                            child: Image.asset(
+                              Images.userPlaceholder,
+                              width: 60.w,
+                            ),
                           ),
                           SizedBox(width: 10.w),
                           Flexible(
@@ -111,11 +114,12 @@ class _GenderEmailState extends State<GenderEmail> {
                                   onTap: () {
                                     Provider.of<StorageProvider>(context,
                                             listen: false)
-                                        .audioSpeak("What is your email ?");
+                                        .audioSpeak("${storeValues.name}, please provide us your email address.");
                                     setState(() {
                                       _male = true;
                                       _female = false;
                                       _nonbinary = false;
+                                      _opt_out = false;
                                       visibleWidget = true;
                                       storeValues.changeGenderl("Male");
                                       storeValues.changeGenderlSelection(_male);
@@ -151,11 +155,12 @@ class _GenderEmailState extends State<GenderEmail> {
                                   onTap: () {
                                     Provider.of<StorageProvider>(context,
                                             listen: false)
-                                        .audioSpeak("What is your email ?");
+                                        .audioSpeak("${storeValues.name}, please provide us your email address.");
                                     setState(() {
                                       _male = false;
                                       _female = true;
                                       _nonbinary = false;
+                                      _opt_out = false;
                                       visibleWidget = true;
                                       storeValues.changeGenderl("Female");
                                       storeValues
@@ -193,11 +198,12 @@ class _GenderEmailState extends State<GenderEmail> {
                                   onTap: () {
                                     Provider.of<StorageProvider>(context,
                                             listen: false)
-                                        .audioSpeak("What is your email ?");
+                                        .audioSpeak("${storeValues.name}, please provide us your email address");
                                     setState(() {
                                       _male = false;
                                       _female = false;
                                       _nonbinary = true;
+                                      _opt_out = false;
                                       visibleWidget = true;
                                       storeValues.changeGenderl("Non-Binary");
                                       storeValues
@@ -226,6 +232,50 @@ class _GenderEmailState extends State<GenderEmail> {
                               ),
                             ),
                             //
+                            Expanded(
+                              flex: 1,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    Provider.of<StorageProvider>(context,
+                                            listen: false)
+                                        .audioSpeak("${storeValues.name}, please provide us your email address");
+                                    setState(() {
+                                      _male = false;
+                                      _female = false;
+                                      _nonbinary = false;
+                                      _opt_out = true;
+                                      visibleWidget = true;
+                                      storeValues.changeGenderl("Opt-out");
+                                      storeValues
+                                          .changeGenderlSelection(_opt_out);
+                                    });
+                                  },
+                                  child: Container(
+                                    decoration: _opt_out
+                                        ? genderBoxDecoration
+                                        : genderUnSelectedbox,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10.w),
+                                      child: Text(
+                                        //getTranslated("non_binary", context),
+                                        "Opt-out",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: _opt_out
+                                              ? Colors.white
+                                              : Colors.black,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -243,9 +293,11 @@ class _GenderEmailState extends State<GenderEmail> {
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    getTranslated(
-                                        "what_email_address", context),
+                                    // getTranslated(
+                                    //     "what_email_address", context),
+                                    "${storeValues.name}, please provide us your email address",
                                     style: TextStyles.boldTextStyle(context),
+                                    textAlign: TextAlign.end,
                                   ),
                                 ),
                                 Directionality(

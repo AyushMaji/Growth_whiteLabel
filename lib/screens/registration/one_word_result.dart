@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print, prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:olga/global/constants/images.dart';
 import 'package:olga/global/methods/methods.dart';
@@ -35,7 +36,7 @@ class _OneWordResultState extends State<OneWordResult> {
     @override
   void initState(){
      super.initState();
-     Provider.of<StorageProvider>(context, listen: false).audioSpeak("Now that we’ve established where you are, let’s focus on2 where you want to get to.....Did you know... “Hopeful people” are found to experience greater success, life meaning, health & wellbeing, academic success, along with fewer symptoms of depression and anxiety.....(Cheavens, Feldam, Gum, Scott and Snyder, 2006)");
+     Provider.of<StorageProvider>(context, listen: false).audioSpeak("Did you know. “Hopeful people” are found to experience greater success, life meaning, health & wellbeing, academic success, along with fewer symptoms of depression and anxiety.");
   }
 
   @override
@@ -66,13 +67,14 @@ class _OneWordResultState extends State<OneWordResult> {
                       child: Padding(
                         padding: EdgeInsets.only(right: 15.w),
                         child: Text(
-                          getTranslated('now_we_established', context),
+                         // getTranslated('now_we_established', context),
+                         "Did you know... “Hopeful people” are found to experience greater success, life meaning, health & wellbeing, academic success, along with fewer symptoms of depression and anxiety.",
                           //style: TextStyles.labelTextStyle(context),
                           style: TextStyle(
                             color: ColorResources.getButtonCalicoColor(context),
                             fontWeight: FontWeight.w800,
                             fontFamily: 'Poppins',
-                            fontSize: 18.sp,
+                            fontSize: 16.sp,
                           ),
                           textAlign: TextAlign.start,
                         ),
@@ -80,12 +82,12 @@ class _OneWordResultState extends State<OneWordResult> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20.h),
-                Text(
-                  getTranslated('hopeful_people', context),
-                  style: TextStyles.smallBoldTextStyle(context),
-                  textAlign: TextAlign.center,
-                ),
+                // SizedBox(height: 20.h),
+                // Text(
+                //   getTranslated('hopeful_people', context),
+                //   style: TextStyles.smallBoldTextStyle(context),
+                //   textAlign: TextAlign.center,
+                // ),
                 SizedBox(height: 10.w),
                 Text(
                   getTranslated('cheavens_feldam', context),
@@ -120,17 +122,25 @@ class _OneWordResultState extends State<OneWordResult> {
                       Row(
                         children: [
                           Flexible(
+                            flex: 4,
                             child: Text(
                               getTranslated('rate_feel_achieve', context),
                               style: TextStyles.regularBoldTextStyle(context),
                               textAlign: TextAlign.start,
                             ),
                           ),
-                          Image(
-                              image: const AssetImage(
-                                Images.selectedArea2,
-                              ),
-                              width: 120.w),
+                          // Image(
+                          //     image: const AssetImage(
+                          //       Images.selectedArea2,
+                          //     ),
+                          //     width: 120.w),
+
+                          Flexible(
+                            child: Image.asset(
+                                   Images.userPlaceholder,
+                                    width: 60.w,
+                                  ),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10.w),
@@ -140,37 +150,84 @@ class _OneWordResultState extends State<OneWordResult> {
                         absorbing: absoreTap,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
-                          child: SizedBox(
-                            height: 20.h,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.builder(
-                              itemExtent: 33.w,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: 10,
-                              itemBuilder: (BuildContext context, int index) {
-                                return InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      setColorsinIndex(index, context);
-                                      selectedIndex = index;
+                          child: 
+                          
+                          // SizedBox(
+                          //   height: 20.h,
+                          //   width: MediaQuery.of(context).size.width,
+                          //   child: ListView.builder(
+                          //     itemExtent: 33.w,
+                          //     shrinkWrap: true,
+                          //     scrollDirection: Axis.horizontal,
+                          //     physics: const NeverScrollableScrollPhysics(),
+                          //     itemCount: 10,
+                          //     itemBuilder: (BuildContext context, int index) {
+                          //       return InkWell(
+                          //         onTap: () {
+                          //           setState(() {
+                          //             setColorsinIndex(index, context);
+                          //             selectedIndex = index;
+                          //             absoreTap = true;
+                          //             print(selectedIndex);
+                          //             _submitButton = true;
+                          //           });
+                          //         },
+                          //         child: Card(
+                          //           child: Container(
+                          //             color: colors[index],
+                          //             height: 20,
+                          //             width: 30,
+                          //           ),
+                          //         ),
+                          //       );
+                          //     },
+                          //   ),
+                          // ),
+
+
+                           SizedBox(
+                        height: 20.h,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                          itemExtent: 33.w,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 10,
+                          itemBuilder: (BuildContext context, int index) {
+                            return InkWell(
+                              onTap: () {
+                                 HapticFeedback.vibrate();
+                                setState(() {
+                                  setColorsinIndex(index, context);
+                                      selectedIndex = index+1;
                                       absoreTap = true;
                                       print(selectedIndex);
                                       _submitButton = true;
-                                    });
-                                  },
-                                  child: Card(
-                                    child: Container(
-                                      color: colors[index],
-                                      height: 20,
-                                      width: 30,
-                                    ),
-                                  ),
-                                );
+ 
+                                });
                               },
-                            ),
-                          ),
+                              child: Container(
+                                height: 20,
+                                width: 30,
+                               decoration: BoxDecoration(
+                                  color: selectedIndex == (index + 1) ? colors[index] : Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                  color: colorsForBorder[index],  // Border color
+                                  width: 1,  // Border width
+                                ),
+                                ),
+                                 child: Center(child: Text((index + 1).toString(),  style: TextStyle(
+                                 color: selectedIndex == (index + 1) ? Colors.white : colorsForBorder[index],  // Change text color based on selection
+                                ),)),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+
+
                         ),
                       ),
       
@@ -289,149 +346,162 @@ class _OneWordResultState extends State<OneWordResult> {
     }
   }
 
-  List<Color> colors = [
-    Color(0xFFC4C4C4),
-    Color(0xFFC4C4C4),
-    Color(0xFFC4C4C4),
-    Color(0xFFC4C4C4),
-    Color(0xFFC4C4C4),
-    Color(0xFFC4C4C4),
-    Color(0xFFC4C4C4),
-    Color(0xFFC4C4C4),
-    Color(0xFFC4C4C4),
-    Color(0xFFC4C4C4)
+ List<Color> colors = [
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+  ];
+
+   List<Color> colorsForBorder = [
+    Color(0xffB50000),
+    Color(0xffB50000),
+    Color(0xffDEB988),
+    Color(0xffDEB988),
+    Color(0xff67C23A),
+    Color(0xff67C23A),
+    Color(0xffE6A23C),
+    Color(0xffE6A23C),
+    Color(0xffF56C6C),
+    Color(0xffF56C6C),
   ];
 
   setColorsinIndex(index, BuildContext context) {
     if (index == 0) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Colors.grey.shade400;
-        colors[2] = Colors.grey.shade400;
-        colors[3] = Colors.grey.shade400;
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Color(0xffB50000);
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 1) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Colors.grey.shade400;
-        colors[3] = Colors.grey.shade400;
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Color(0xffB50000);
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 2) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
         colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Colors.grey.shade400;
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 3) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
         colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 4) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Color(0xff67C23A);
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 5) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Color(0xff67C23A);
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 6) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Color(0xffE6A23C);
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 7) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Color(0xFFEED4B4);
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Color(0xffE6A23C);
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 8) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Color(0xFFEED4B4);
-        colors[8] = Color(0xFFF1D2AC);
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Color(0xffF56C6C);
+        colors[9] = Colors.white;
       });
     } else if (index == 9) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Color(0xFFEED4B4);
-        colors[8] = Color(0xFFF1D2AC);
-        colors[9] = Color(0xFFF1CC9D);
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Color(0xffF56C6C);
       });
     }
   }

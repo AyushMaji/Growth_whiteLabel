@@ -17,6 +17,7 @@ class Images {
 
   //::::::::::::::::::::::::: Starting Page
   static const String olgaTM = 'assets/icons/olga-tm.png';
+  static const String campBell = 'assets/icons/campbel.png';
   static const String olga = 'assets/icons/olga.png';
   static const String userPlaceholder = 'assets/icons/user-placeholder.png';
   static const String centreTM = 'assets/icons/centre-tm.png';

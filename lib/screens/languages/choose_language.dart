@@ -83,15 +83,19 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                 children: [
                   Flexible(
                     flex: 1,
-                    child: Image.asset(
-                      Images.userPlaceholder,
-                      width: 100.w,
+                    child: ClipOval(
+                      child: Image.asset(
+                        Images.userPlaceholder,
+                        width: 100.w,
+                      ),
                     ),
                   ),
                   SizedBox(width: 25.w),
                   Flexible(
                     flex: 1,
-                    child: Image.asset(Images.olgaTM),
+                    child: 
+                    Text("Growth",style: TextStyle(fontSize: 40.sp),)
+                    //Image.asset(Images.olgaTM),
                   ),
                 ],
               ),

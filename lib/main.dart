@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_print
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -82,7 +83,14 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => FeedbackProvider()),
         ChangeNotifierProvider(create: (_) => LastRouteProvider()),
       ],
-      child: MyApp(lastRoute: lastRoute),
+      child: DevicePreview(
+         enabled: false,
+         // ignore: prefer_const_literals_to_create_immutables
+         tools: [
+        ...DevicePreview.defaultTools,
+        //  CustomPlugin(),
+      ],
+     builder: (context) => MyApp(lastRoute: lastRoute)),
     ),
   );
 }

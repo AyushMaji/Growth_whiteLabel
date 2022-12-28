@@ -27,30 +27,52 @@ class _skillsSupportIndexState extends State<SkillQualities> {
   int? selectedIndex;
 
   final List<String> _wordName = [
-    "Resilience",
-    "Creativity",
-    "Self-reliability",
-    "Patience",
-    "Courage",
-    "Commitment",
-    "Willpower",
+    // "Resilience",
+    // "Creativity",
+    // "Self-reliability",
+    // "Patience",
+    // "Courage",
+    // "Commitment",
+    // "Willpower",
+    // "Passion",
+    // "Planning",
+    // "Integrity",
+    // "Optimism",
+    // "Risk Taking",
+    // "Self confidence",
+    // "Empathy",
+    // "Flexibility",
+    // "Innovative",
+    // "Persistence",
+    // "Pro-active",
+
+
+    "Self-Awareness",
+    "Assertiveness",
+    "Independence",
+    "Self-Belief",
     "Passion",
-    "Planning",
-    "Integrity",
-    "Optimism",
-    "Risk Taking",
-    "Self confidence",
-    "Empathy",
-    "Flexibility",
-    "Innovative",
+    "Organised",
+    "Network",
+    "Realistic",
+    "Flexible",
+    "Problem Solving",
+    "Motivation",
     "Persistence",
-    "Pro-active",
+    "Optimism",
+    "Self-Care",
+    "Discipline",
+    "Pro-Active",
+    "Risk-Taking",
+    "Resilience",
+
+
   ];
 
   @override
   void initState() {
     super.initState();
-    Provider.of<StorageProvider>(context, listen: false).audioSpeak("Choose as many of the skills & qualities you have that will support you to achieve your ideal life.");
+    Provider.of<StorageProvider>(context, listen: false).audioSpeak("Select key skills that you have that will help you achieve your goal");
 
   }
 
@@ -80,7 +102,8 @@ class _skillsSupportIndexState extends State<SkillQualities> {
                     child: Padding(
                       padding: EdgeInsets.only(right: 15.w),
                       child: Text(
-                        getTranslated('choose_skill_qualities', context),
+                       // getTranslated('choose_skill_qualities', context),
+                       "Select key skills that you have that will help you achieve your goal",
                         style: TextStyles.smallBoldTextStyle(context),
                         textAlign: TextAlign.start,
                       ),

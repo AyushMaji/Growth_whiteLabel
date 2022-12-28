@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:olga/global/methods/methods.dart';
 import 'package:olga/global/styles/button_style.dart';
@@ -31,7 +32,7 @@ class _FamilyState extends State<Family> {
     @override
   void initState() {
     super.initState();
-    Provider.of<StorageProvider>(context, listen: false).audioSpeak("Why don't we start by setting a goal for your Family. Before we do that, let's first understand how happy you are with the different aspects of your Family......On a scale of 1-10 rate the following...... Family.....Are you happy with the support you receive from your family?");
+    Provider.of<StorageProvider>(context, listen: false).audioSpeak("Families (love and belonging) can be complex as they are first critical pillar in shaping your identity and competency in positively engaging with life. Positive family relationships are built on quality time, communication, teamwork and appreciation of each other. Let’s create a plan on how you will achieve your goal in this area. How satisfied are you that your family loves and supports you.");
   }
 
 
@@ -46,16 +47,27 @@ class _FamilyState extends State<Family> {
         child: Column(
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
+                Flexible(
+                  flex: 4,
                   child: Text(
-                    getTranslated("why_dont_start_family_goal", context),
+                    // getTranslated("why_dont_start_family_goal", context),
+                    //"Let's understand how happy you are with the different aspects of your Family by rating how satisfied you are on a scale of 1-10",
+                    "Families (love and belonging) can be complex as they are first critical pillar in shaping your identity and competency in positively engaging with life. Positive family relationships are built on quality time, communication, teamwork and appreciation of each other. Let’s create a plan on how you will achieve your goal in this area.",
                     style: TextStyles.regularBoldTextStyle(context),
                   ),
                 ),
-                Image.asset(
-                  Images.selectedArea2,
-                  width: 120.sp,
+                // Image.asset(
+                //   Images.selectedArea2,
+                //   width: 120.sp,
+                // ),
+                Flexible(
+                  child: Image.asset(
+                   // Images.selectedArea2,
+                    Images.userPlaceholder,
+                    width: 60.sp,
+                  ),
                 ),
               ],
             ),
@@ -67,17 +79,19 @@ class _FamilyState extends State<Family> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    getTranslated("on_scale_1_10", context),
+                    // getTranslated("on_scale_1_10", context),
+                    "How satisfied are you that your family loves and supports you.",
                     style: TextStyles.smallBoldTextStyle(context),
                   ),
-                  SizedBox(height: 20.sp),
-                  Text(
-                    getTranslated("family", context),
-                    style: TextStyles.smallBoldTextStyle(context),
-                  ),
+                  // SizedBox(height: 20.sp),
+                  // Text(
+                  //   getTranslated("family", context),
+                  //   style: TextStyles.smallBoldTextStyle(context),
+                  // ),
                   SizedBox(height: 10.sp),
                   Text(
-                    getTranslated('happy_with_family_support', context),
+                    // getTranslated('happy_with_family_support', context),
+                    "Love",
                     style: const TextStyle(fontStyle: FontStyle.italic),
                   ),
 
@@ -88,7 +102,9 @@ class _FamilyState extends State<Family> {
                     absorbing: false,
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8.0),
-                      child: SizedBox(
+                      child: 
+                      
+                       SizedBox(
                         height: 20.h,
                         width: MediaQuery.of(context).size.width,
                         child: ListView.builder(
@@ -100,27 +116,55 @@ class _FamilyState extends State<Family> {
                           itemBuilder: (BuildContext context, int index) {
                             return InkWell(
                               onTap: () {
+                                 HapticFeedback.vibrate();
                                 setState(() {
                                   setColorsinIndex(index, context);
-                                  storageValue.updateResponse1(index);                           
-                                  selectedIndex = index;
+                                  selectedIndex = (index + 1);
+                                  
+                                  setColorsinIndex(index, context);
+                                  storageValue.updateResponse1(index);
+                                // selectedIndex = index;
                                   showButton = true;
                                   absoreTap = true;
                                 });
                               },
-                              child: Card(
-                                child: Container(
-                                  color: colors[index],
-                                  height: 20,
-                                  width: 30,
+                              child: Container(
+                                height: 20,
+                                width: 30,
+                               decoration: BoxDecoration(
+                                  color: selectedIndex == (index + 1) ? colors[index] : Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                  color: colorsForBorder[index],  // Border color
+                                  width: 1,  // Border width
                                 ),
+                                ),
+                                 child: Center(child: Text((index + 1).toString(),  style: TextStyle(
+                                 color: selectedIndex == (index + 1) ? Colors.white : colorsForBorder[index],  // Change text color based on selection
+                                ),)),
                               ),
                             );
                           },
                         ),
                       ),
-                    ),
+              ),
+            ),
+
+
+            SizedBox(height: 10.h,),
+           Padding(
+                padding:  EdgeInsets.only(right: 10.h, left:5.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(getTranslated("unsatisfied", context)),
+                  Text(
+                    getTranslated("satisfied", context),
+                    textAlign: TextAlign.right,
                   ),
+                ],
+              ),
+            )
 
             
                 ],
@@ -152,150 +196,162 @@ class _FamilyState extends State<Family> {
     );
   }
 
-  List<Color> colors = [
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
+ List<Color> colors = [
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+  ];
+
+   List<Color> colorsForBorder = [
+    Color(0xffB50000),
+    Color(0xffB50000),
+    Color(0xffDEB988),
+    Color(0xffDEB988),
+    Color(0xff67C23A),
+    Color(0xff67C23A),
+    Color(0xffE6A23C),
+    Color(0xffE6A23C),
+    Color(0xffF56C6C),
+    Color(0xffF56C6C),
   ];
 
   setColorsinIndex(index, BuildContext context) {
     if (index == 0) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Colors.grey.shade400;
-        colors[2] = Colors.grey.shade400;
-        colors[3] = Colors.grey.shade400;
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Color(0xffB50000);
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 1) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Colors.grey.shade400;
-        colors[3] = Colors.grey.shade400;
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Color(0xffB50000);
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 2) {
       setState(() {
-        colors[index] = Color(0xFFF2E3CF);
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
         colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Colors.grey.shade400;
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 3) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
         colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 4) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Color(0xff67C23A);
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 5) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Color(0xff67C23A);
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 6) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Color(0xffE6A23C);
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 7) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Color(0xFFEED4B4);
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Color(0xffE6A23C);
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (index == 8) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Color(0xFFEED4B4);
-        colors[8] = Color(0xFFF1D2AC);
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Color(0xffF56C6C);
+        colors[9] = Colors.white;
       });
     } else if (index == 9) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Color(0xFFEED4B4);
-        colors[8] = Color(0xFFF1D2AC);
-        colors[9] = Color(0xFFF1CC9D);
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Color(0xffF56C6C);
       });
     }
   }

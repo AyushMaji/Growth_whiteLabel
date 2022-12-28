@@ -35,6 +35,9 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
   bool continueBtn2 = false;
   bool continueBtn3 = false;
   bool submitNow = false;
+  int selectedIndex = 0;
+  int selectedIndex2 = 0;
+  int selectedIndex3 = 0;
 
     @override
      void initState() {
@@ -42,7 +45,7 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
      Provider.of<StorageProvider>(context, listen: false)
         .registrationSafetyNet(route: ImportantOfGoal.id);
      StorageProvider storageValue =Provider.of<StorageProvider>(context, listen: false);
-    Provider.of<StorageProvider>(context, listen: false).audioSpeak("Motivation describes the wants or needs that direct one's behavior toward a goal ..... Henry Ford once said, “Whether you believe you can, or believe you can't, you're right.” How important is your goal?");
+    Provider.of<StorageProvider>(context, listen: false).audioSpeak("Achieving goals requires change - big or small. The value of this goal and the effort you place on achieving it could determine your level of success. Lets ensure you are on the right track.  How important is your goal?");
   }
 
 
@@ -63,6 +66,7 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 10.h),
                   Image.asset(
@@ -74,7 +78,8 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
                     child: Padding(
                       padding: EdgeInsets.only(right: 15.w),
                       child: Text(
-                        getTranslated('motivation_describe', context),
+                       // getTranslated('motivation_describe', context),
+                       "Achieving goals requires change - big or small. The value of this goal and the effort you place on achieving it could determine your level of success. Lets ensure you are on the right track.",
                         style: TextStyles.regularBoldTextStyle(context),
                         textAlign: TextAlign.start,
                       ),
@@ -85,23 +90,25 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
               SizedBox(height: 10.sp),
 
               //
-              RichText(
-                text: TextSpan(
-                  text: "Henry Ford once said, ",
-                  style: TextStyles.creamBoldStyle(context),
-                  children: [
-                    TextSpan(
-                      text:
-                          "“Whether you believe you can, or believe you can't, you're right”",
-                      style: TextStyles.creamNormalStyle(context),
-                    ),
-                  ],
-                ),
-              ),
+              // RichText(
+              //   text: TextSpan(
+              //     text: "Henry Ford once said, ",
+              //     style: TextStyles.creamBoldStyle(context),
+              //     children: [
+              //       TextSpan(
+              //         text:
+              //             "“Whether you believe you can, or believe you can't, you're right”",
+              //         style: TextStyles.creamNormalStyle(context),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(height: 10.sp),
 
               //
-              Text(getTranslated('how_important_goal', context),
+              Text(
+                //getTranslated('how_important_goal', context),
+                "How valuable is this goal to your life?",
                   style: TextStyles.smallBoldTextStyle(context)),
               SizedBox(height: 10.sp),
 
@@ -110,7 +117,9 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
                 absorbing: absoreTap,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 8.0),
-                  child: SizedBox(
+                  child:
+                  
+                   SizedBox(
                     height: 20.h,
                     width: MediaQuery.of(context).size.width,
                     child: ListView.builder(
@@ -126,17 +135,33 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
                               setColorsinIndex(index, context);
                               isGoalValueGiven = true;
                               //absoreTap = true;
+                               selectedIndex = (index + 1);
                               storageValue.changeImportantYourGoal(index);
                               print("important of goal index ===>>> $index");
                             });
                           },
-                          child: Card(
-                            child: Container(
-                              color: colors[index],
-                              height: 20.h,
-                              width: 30.w,
-                            ),
-                          ),
+                          child:
+                          //  Container(
+                          //   color: colors[index],
+                          //   height: 20.h,
+                          //   width: 30.w,
+                          // ),
+                           Container(
+                                height: 20,
+                                width: 30,
+                               decoration: BoxDecoration(
+                                  color: selectedIndex == (index + 1) ? colors[index] : Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                  color: colorsForBorder[index],  // Border color
+                                  width: 1,  // Border width
+                                ),
+                                ),
+                                 child: Center(child: Text((index + 1).toString(),  style: TextStyle(
+                                 color: selectedIndex == (index + 1) ? Colors.white : colorsForBorder[index],  // Change text color based on selection
+                                ),)),
+                              ),
+                          
                         );
                       },
                     ),
@@ -147,25 +172,26 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
 
               //
 
-              Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Expanded(
-                      child: Text(
-                    "1",
-                  )),
-                  Spacer(),
-                  Expanded(
-                      child: Padding(
-                    padding: EdgeInsets.only(right: 10.0),
-                    child: Text(
-                      "10",
-                      textAlign: TextAlign.end,
-                    ),
-                  )),
-                ],
-              ),
+              // Row(
+              //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: const [
+              //     Expanded(
+              //         child: Text(
+              //       "1",
+              //     )),
+              //     Spacer(),
+              //     Expanded(
+              //         child: Padding(
+              //       padding: EdgeInsets.only(right: 10.0),
+              //       child: Text(
+              //         "10",
+              //         textAlign: TextAlign.end,
+              //       ),
+              //     )),
+              //   ],
+              // ),
 
+              SizedBox(height: 5.h,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
@@ -198,7 +224,7 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
                         isGoalValueGiven = false;
                         print("button ready to work");
                       });
-                       Provider.of<StorageProvider>(context, listen: false).audioSpeak("Now ask yourself, is it worth your effort?");
+                      // Provider.of<StorageProvider>(context, listen: false).audioSpeak("Now ask yourself, is it worth your effort?");
 
                     },
                   ),
@@ -237,15 +263,26 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
                                   print(
                                       "worth effort selected index ===>>> $secondIndex");
                                   continueBtn2 = true;
+                                  selectedIndex2 = (secondIndex + 1);
                                   //absoreTap2 = true;
                                 });
                               },
-                              child: Card(
-                                child: Container(
+                              child: Container(
+                                height: 20.h,
+                                width: 30.w,
+                                decoration: BoxDecoration(
                                   color: secondColorsScal[secondIndex],
-                                  height: 20.h,
-                                  width: 30.w,
+                                   shape: BoxShape.circle,
+                                    border: Border.all(
+                                  color: colorsForBorder2[secondIndex],  // Border color
+                                  width: 1,  // Border width
                                 ),
+                                ),
+                                child: Center(child: Text((secondIndex+1).toString(),
+                                 style: TextStyle(
+                                 color: selectedIndex2 == (secondIndex + 1) ? Colors.white : colorsForBorder2[secondIndex],  // Change text color based on selection
+                                ),
+                                )),
                               ),
                             );
                           },
@@ -254,39 +291,44 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
                       //
 
                       //
-                      Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Expanded(
-                              child: Text(
-                            "1",
-                          )),
-                          Spacer(),
-                          Expanded(
-                              child: Padding(
-                            padding: EdgeInsets.only(right: 10.0),
-                            child: Text(
-                              "10",
-                              textAlign: TextAlign.end,
-                            ),
-                          )),
-                        ],
-                      ),
+                      // Row(
+                      //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: const [
+                      //     Expanded(
+                      //         child: Text(
+                      //       "1",
+                      //     )),
+                      //     Spacer(),
+                      //     Expanded(
+                      //         child: Padding(
+                      //       padding: EdgeInsets.only(right: 10.0),
+                      //       child: Text(
+                      //         "10",
+                      //         textAlign: TextAlign.end,
+                      //       ),
+                      //     )),
+                      //   ],
+                      // ),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          Expanded(child: Text("Not at all")),
-                          Expanded(child: Text("Maybe")),
-                          Expanded(child: Text("Very much so")),
-                          Expanded(
-                            child: Text(
-                              "Absolutely",
-                              textAlign: TextAlign.right,
-                            ),
-                          ),
-                        ],
-                      ),
+                      SizedBox(height: 5.h,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  Expanded(child: Text("Not at all")),
+                  Expanded(child: Text("Somewhat")),
+                  Expanded(
+                      child: Text(
+                    "Very",
+                    textAlign: TextAlign.center,
+                  )),
+                  Expanded(
+                    child: Text(
+                      "Extremly",
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ],
+              ),
 
                       SizedBox(height: 10.sp),
                     ],
@@ -348,15 +390,27 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
                                   print(
                                       "believe selected thirdIndex ===>>> $thirdIndex");
                                   continueBtn3 = true;
+                                  selectedIndex3 = (thirdIndex + 1);
                                   //absoreTap3 = true;
                                 });
                               },
-                              child: Card(
-                                child: Container(
+                              child: Container(
+                                //color: thirtIndexColor[thirdIndex],
+                                height: 20.h,
+                                width: 30.w,
+                                 decoration: BoxDecoration(
                                   color: thirtIndexColor[thirdIndex],
-                                  height: 20.h,
-                                  width: 30.w,
+                                   shape: BoxShape.circle,
+                                    border: Border.all(
+                                  color: colorsForBorder3[thirdIndex],  // Border color
+                                  width: 1,  // Border width
                                 ),
+                                ),
+                                 child: Center(child: Text((thirdIndex+1).toString(),
+                                  style: TextStyle(
+                                 color: selectedIndex3 == (thirdIndex + 1) ? Colors.white : colorsForBorder3[thirdIndex],  // Change text color based on selection
+                                ),
+                                 ))
                               ),
                             );
                           },
@@ -366,39 +420,44 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
 
                     //
 
-                    Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Expanded(
-                            child: Text(
-                          "1",
-                        )),
-                        Spacer(),
-                        Expanded(
-                            child: Padding(
-                          padding: EdgeInsets.only(right: 10.0),
-                          child: Text(
-                            "10",
-                            textAlign: TextAlign.end,
-                          ),
-                        )),
-                      ],
-                    ),
+                    // Row(
+                    //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: const [
+                    //     Expanded(
+                    //         child: Text(
+                    //       "1",
+                    //     )),
+                    //     Spacer(),
+                    //     Expanded(
+                    //         child: Padding(
+                    //       padding: EdgeInsets.only(right: 10.0),
+                    //       child: Text(
+                    //         "10",
+                    //         textAlign: TextAlign.end,
+                    //       ),
+                    //     )),
+                    //   ],
+                    // ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        Expanded(child: Text("Not at all")),
-                        Expanded(child: Text("Maybe")),
-                        Expanded(child: Text("Very much so")),
-                        Expanded(
-                          child: Text(
-                            "Absolutely",
-                            textAlign: TextAlign.right,
-                          ),
-                        ),
-                      ],
+                    SizedBox(height: 5.h,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  Expanded(child: Text("Not at all")),
+                  Expanded(child: Text("Somewhat")),
+                  Expanded(
+                      child: Text(
+                    "Very",
+                    textAlign: TextAlign.center,
+                  )),
+                  Expanded(
+                    child: Text(
+                      "Extremly",
+                      textAlign: TextAlign.right,
                     ),
+                  ),
+                ],
+              ),
                   ],
                 ),
               ),
@@ -448,148 +507,161 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
   }
 
   List<Color> colors = [
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+  ];
+
+    List<Color> colorsForBorder = [
+    Color(0xffB50000),
+    Color(0xffB50000),
+    Color(0xffDEB988),
+    Color(0xffDEB988),
+    Color(0xff67C23A),
+    Color(0xff67C23A),
+    Color(0xffE6A23C),
+    Color(0xffE6A23C),
+    Color(0xffF56C6C),
+    Color(0xffF56C6C),
   ];
 
   setColorsinIndex(firstScalindex, BuildContext context) {
     if (firstScalindex == 0) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Colors.grey.shade400;
-        colors[2] = Colors.grey.shade400;
-        colors[3] = Colors.grey.shade400;
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+       colors[0] = Color(0xffB50000);
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (firstScalindex == 1) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Colors.grey.shade400;
-        colors[3] = Colors.grey.shade400;
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Color(0xffB50000);
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (firstScalindex == 2) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
         colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Colors.grey.shade400;
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (firstScalindex == 3) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
+       colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
         colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Colors.grey.shade400;
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (firstScalindex == 4) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Colors.grey.shade400;
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+       colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Color(0xff67C23A);
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (firstScalindex == 5) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Colors.grey.shade400;
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+         colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Color(0xff67C23A);
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (firstScalindex == 6) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Colors.grey.shade400;
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Color(0xffE6A23C);
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (firstScalindex == 7) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Color(0xFFEED4B4);
-        colors[8] = Colors.grey.shade400;
-        colors[9] = Colors.grey.shade400;
+         colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Color(0xffE6A23C);
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
       });
     } else if (firstScalindex == 8) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Color(0xFFEED4B4);
-        colors[8] = Color(0xFFF1D2AC);
-        colors[9] = Colors.grey.shade400;
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Color(0xffF56C6C);
+        colors[9] = Colors.white;
       });
     } else if (firstScalindex == 9) {
       setState(() {
-        colors[0] = Color(0xFFF8F1E7);
-        colors[1] = Color(0xFFF8F1E7);
-        colors[2] = Color(0xFFF2E3CF);
-        colors[3] = Color(0xFFEFDCC4);
-        colors[4] = Color(0xFFEFDCC4);
-        colors[5] = Color(0xFFEFDCC4);
-        colors[6] = Color(0xFFF0DAC0);
-        colors[7] = Color(0xFFEED4B4);
-        colors[8] = Color(0xFFF1D2AC);
-        colors[9] = Color(0xFFF1CC9D);
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Color(0xffF56C6C);
       });
     }
 
@@ -598,301 +670,326 @@ class _ImportantOfGoalState extends State<ImportantOfGoal> {
 
   //
   List<Color> secondColorsScal = [
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+  ];
+   List<Color> colorsForBorder2 = [
+    Color(0xffB50000),
+    Color(0xffB50000),
+    Color(0xffDEB988),
+    Color(0xffDEB988),
+    Color(0xff67C23A),
+    Color(0xff67C23A),
+    Color(0xffE6A23C),
+    Color(0xffE6A23C),
+    Color(0xffF56C6C),
+    Color(0xffF56C6C),
   ];
 
   secondColorsinIndex(index, BuildContext context) {
     if (index == 0) {
       setState(() {
-        secondColorsScal[0] = Color(0xFFF8F1E7);
-        secondColorsScal[1] = Colors.grey.shade400;
-        secondColorsScal[2] = Colors.grey.shade400;
-        secondColorsScal[3] = Colors.grey.shade400;
-        secondColorsScal[4] = Colors.grey.shade400;
-        secondColorsScal[5] = Colors.grey.shade400;
-        secondColorsScal[6] = Colors.grey.shade400;
-        secondColorsScal[7] = Colors.grey.shade400;
-        secondColorsScal[8] = Colors.grey.shade400;
-        secondColorsScal[9] = Colors.grey.shade400;
+        secondColorsScal[0] = Color(0xffB50000);
+        secondColorsScal[1] = Colors.white;
+        secondColorsScal[2] = Colors.white;
+        secondColorsScal[3] = Colors.white;
+        secondColorsScal[4] = Colors.white;
+        secondColorsScal[5] = Colors.white;
+        secondColorsScal[6] = Colors.white;
+        secondColorsScal[7] = Colors.white;
+        secondColorsScal[8] = Colors.white;
+        secondColorsScal[9] = Colors.white;
       });
     } else if (index == 1) {
       setState(() {
-        secondColorsScal[0] = Color(0xFFF8F1E7);
-        secondColorsScal[1] = Color(0xFFF8F1E7);
-        secondColorsScal[2] = Colors.grey.shade400;
-        secondColorsScal[3] = Colors.grey.shade400;
-        secondColorsScal[4] = Colors.grey.shade400;
-        secondColorsScal[5] = Colors.grey.shade400;
-        secondColorsScal[6] = Colors.grey.shade400;
-        secondColorsScal[7] = Colors.grey.shade400;
-        secondColorsScal[8] = Colors.grey.shade400;
-        secondColorsScal[9] = Colors.grey.shade400;
+        secondColorsScal[0]=Colors.white;
+        secondColorsScal[1] = Color(0xFFB50000);
+        secondColorsScal[2] = Colors.white;
+        secondColorsScal[3] = Colors.white;
+        secondColorsScal[4] = Colors.white;
+        secondColorsScal[5] = Colors.white;
+        secondColorsScal[6] = Colors.white;
+        secondColorsScal[7] = Colors.white;
+        secondColorsScal[8] = Colors.white;
+        secondColorsScal[9] = Colors.white;
       });
     } else if (index == 2) {
       setState(() {
-        secondColorsScal[0] = Color(0xFFF8F1E7);
-        secondColorsScal[1] = Color(0xFFF8F1E7);
+        secondColorsScal[0]=Colors.white;
+        secondColorsScal[1]=Colors.white;
         secondColorsScal[2] = Color(0xFFF2E3CF);
-        secondColorsScal[3] = Colors.grey.shade400;
-        secondColorsScal[4] = Colors.grey.shade400;
-        secondColorsScal[5] = Colors.grey.shade400;
-        secondColorsScal[6] = Colors.grey.shade400;
-        secondColorsScal[7] = Colors.grey.shade400;
-        secondColorsScal[8] = Colors.grey.shade400;
-        secondColorsScal[9] = Colors.grey.shade400;
+        secondColorsScal[3] = Colors.white;
+        secondColorsScal[4] = Colors.white;
+        secondColorsScal[5] = Colors.white;
+        secondColorsScal[6] = Colors.white;
+        secondColorsScal[7] = Colors.white;
+        secondColorsScal[8] = Colors.white;
+        secondColorsScal[9] = Colors.white;
       });
     } else if (index == 3) {
       setState(() {
-        secondColorsScal[0] = Color(0xFFF8F1E7);
-        secondColorsScal[1] = Color(0xFFF8F1E7);
-        secondColorsScal[2] = Color(0xFFF2E3CF);
+        secondColorsScal[0] = Colors.white;
+        secondColorsScal[1] = Colors.white;
+        secondColorsScal[2] = Colors.white;
         secondColorsScal[3] = Color(0xFFEFDCC4);
-        secondColorsScal[4] = Colors.grey.shade400;
-        secondColorsScal[5] = Colors.grey.shade400;
-        secondColorsScal[6] = Colors.grey.shade400;
-        secondColorsScal[7] = Colors.grey.shade400;
-        secondColorsScal[8] = Colors.grey.shade400;
-        secondColorsScal[9] = Colors.grey.shade400;
+        secondColorsScal[4] = Colors.white;
+        secondColorsScal[5] = Colors.white;
+        secondColorsScal[6] = Colors.white;
+        secondColorsScal[7] = Colors.white;
+        secondColorsScal[8] = Colors.white;
+        secondColorsScal[9] = Colors.white;
       });
     } else if (index == 4) {
       setState(() {
-        secondColorsScal[0] = Color(0xFFF8F1E7);
-        secondColorsScal[1] = Color(0xFFF8F1E7);
-        secondColorsScal[2] = Color(0xFFF2E3CF);
-        secondColorsScal[3] = Color(0xFFEFDCC4);
-        secondColorsScal[4] = Color(0xFFEFDCC4);
-        secondColorsScal[5] = Colors.grey.shade400;
-        secondColorsScal[6] = Colors.grey.shade400;
-        secondColorsScal[7] = Colors.grey.shade400;
-        secondColorsScal[8] = Colors.grey.shade400;
-        secondColorsScal[9] = Colors.grey.shade400;
+        secondColorsScal[0] = Colors.white;
+        secondColorsScal[1] = Colors.white;
+        secondColorsScal[2] = Colors.white;
+        secondColorsScal[3] = Colors.white;
+        secondColorsScal[4] = Color(0xff67C23A);
+        secondColorsScal[5] = Colors.white;
+        secondColorsScal[6] = Colors.white;
+        secondColorsScal[7] = Colors.white;
+        secondColorsScal[8] = Colors.white;
+        secondColorsScal[9] = Colors.white;
       });
     } else if (index == 5) {
       setState(() {
-        secondColorsScal[0] = Color(0xFFF8F1E7);
-        secondColorsScal[1] = Color(0xFFF8F1E7);
-        secondColorsScal[2] = Color(0xFFF2E3CF);
-        secondColorsScal[3] = Color(0xFFEFDCC4);
-        secondColorsScal[4] = Color(0xFFEFDCC4);
-        secondColorsScal[5] = Color(0xFFEFDCC4);
-        secondColorsScal[6] = Colors.grey.shade400;
-        secondColorsScal[7] = Colors.grey.shade400;
-        secondColorsScal[8] = Colors.grey.shade400;
-        secondColorsScal[9] = Colors.grey.shade400;
+        secondColorsScal[0] = Colors.white;
+        secondColorsScal[1] = Colors.white;
+        secondColorsScal[2] = Colors.white;
+        secondColorsScal[3] = Colors.white;
+        secondColorsScal[4] = Colors.white;
+        secondColorsScal[5] = Color(0xff67C23A);
+        secondColorsScal[6] = Colors.white;
+        secondColorsScal[7] = Colors.white;
+        secondColorsScal[8] = Colors.white;
+        secondColorsScal[9] = Colors.white;
       });
     } else if (index == 6) {
       setState(() {
-        secondColorsScal[0] = Color(0xFFF8F1E7);
-        secondColorsScal[1] = Color(0xFFF8F1E7);
-        secondColorsScal[2] = Color(0xFFF2E3CF);
-        secondColorsScal[3] = Color(0xFFEFDCC4);
-        secondColorsScal[4] = Color(0xFFEFDCC4);
-        secondColorsScal[5] = Color(0xFFEFDCC4);
-        secondColorsScal[6] = Color(0xFFF0DAC0);
-        secondColorsScal[7] = Colors.grey.shade400;
-        secondColorsScal[8] = Colors.grey.shade400;
-        secondColorsScal[9] = Colors.grey.shade400;
+        secondColorsScal[0] = Colors.white;
+        secondColorsScal[1] = Colors.white;
+        secondColorsScal[2] = Colors.white;
+        secondColorsScal[3] = Colors.white;
+        secondColorsScal[4] = Colors.white;
+        secondColorsScal[5] = Colors.white;
+        secondColorsScal[6] = Color(0xffE6A23C);
+        secondColorsScal[7] = Colors.white;
+        secondColorsScal[8] = Colors.white;
+        secondColorsScal[9] = Colors.white;
       });
     } else if (index == 7) {
       setState(() {
-        secondColorsScal[0] = Color(0xFFF8F1E7);
-        secondColorsScal[1] = Color(0xFFF8F1E7);
-        secondColorsScal[2] = Color(0xFFF2E3CF);
-        secondColorsScal[3] = Color(0xFFEFDCC4);
-        secondColorsScal[4] = Color(0xFFEFDCC4);
-        secondColorsScal[5] = Color(0xFFEFDCC4);
-        secondColorsScal[6] = Color(0xFFF0DAC0);
-        secondColorsScal[7] = Color(0xFFEED4B4);
-        secondColorsScal[8] = Colors.grey.shade400;
-        secondColorsScal[9] = Colors.grey.shade400;
+        secondColorsScal[0] = Colors.white;
+        secondColorsScal[1] = Colors.white;
+        secondColorsScal[2] = Colors.white;
+        secondColorsScal[3] = Colors.white;
+        secondColorsScal[4] = Colors.white;
+        secondColorsScal[5] = Colors.white;
+        secondColorsScal[6] = Colors.white;
+        secondColorsScal[7] = Color(0xffE6A23C);
+        secondColorsScal[8] = Colors.white;
+        secondColorsScal[9] = Colors.white;
       });
     } else if (index == 8) {
       setState(() {
-        secondColorsScal[0] = Color(0xFFF8F1E7);
-        secondColorsScal[1] = Color(0xFFF8F1E7);
-        secondColorsScal[2] = Color(0xFFF2E3CF);
-        secondColorsScal[3] = Color(0xFFEFDCC4);
-        secondColorsScal[4] = Color(0xFFEFDCC4);
-        secondColorsScal[5] = Color(0xFFEFDCC4);
-        secondColorsScal[6] = Color(0xFFF0DAC0);
-        secondColorsScal[7] = Color(0xFFEED4B4);
-        secondColorsScal[8] = Color(0xFFF1D2AC);
-        secondColorsScal[9] = Colors.grey.shade400;
+        secondColorsScal[0] = Colors.white;
+        secondColorsScal[1] = Colors.white;
+        secondColorsScal[2] = Colors.white;
+        secondColorsScal[3] = Colors.white;
+        secondColorsScal[4] = Colors.white;
+        secondColorsScal[5] = Colors.white;
+        secondColorsScal[6] = Colors.white;
+        secondColorsScal[7] = Colors.white;
+        secondColorsScal[8] = Color(0xffF56C6C);
+        secondColorsScal[9] = Colors.white;
       });
     } else if (index == 9) {
       setState(() {
-        secondColorsScal[0] = Color(0xFFF8F1E7);
-        secondColorsScal[1] = Color(0xFFF8F1E7);
-        secondColorsScal[2] = Color(0xFFF2E3CF);
-        secondColorsScal[3] = Color(0xFFEFDCC4);
-        secondColorsScal[4] = Color(0xFFEFDCC4);
-        secondColorsScal[5] = Color(0xFFEFDCC4);
-        secondColorsScal[6] = Color(0xFFF0DAC0);
-        secondColorsScal[7] = Color(0xFFEED4B4);
-        secondColorsScal[8] = Color(0xFFF1D2AC);
-        secondColorsScal[9] = Color(0xFFF1CC9D);
+        secondColorsScal[0] = Colors.white;
+        secondColorsScal[1] = Colors.white;
+        secondColorsScal[2] = Colors.white;
+        secondColorsScal[3] = Colors.white;
+        secondColorsScal[4] = Colors.white;
+        secondColorsScal[5] = Colors.white;
+        secondColorsScal[6] = Colors.white;
+        secondColorsScal[7] = Colors.white;
+        secondColorsScal[8] = Colors.white;
+        secondColorsScal[9] = Color(0xffF56C6C);
       });
     }
   }
 
-  //
+  
 
   //
   List<Color> thirtIndexColor = [
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
-    Colors.grey.shade400,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+  ];
+
+   List<Color> colorsForBorder3 = [
+    Color(0xffB50000),
+    Color(0xffB50000),
+    Color(0xffDEB988),
+    Color(0xffDEB988),
+    Color(0xff67C23A),
+    Color(0xff67C23A),
+    Color(0xffE6A23C),
+    Color(0xffE6A23C),
+    Color(0xffF56C6C),
+    Color(0xffF56C6C),
   ];
 
   thirdIndexColor(index, BuildContext context) {
     if (index == 0) {
       setState(() {
-        thirtIndexColor[0] = Color(0xFFF8F1E7);
-        thirtIndexColor[1] = Colors.grey.shade400;
-        thirtIndexColor[2] = Colors.grey.shade400;
-        thirtIndexColor[3] = Colors.grey.shade400;
-        thirtIndexColor[4] = Colors.grey.shade400;
-        thirtIndexColor[5] = Colors.grey.shade400;
-        thirtIndexColor[6] = Colors.grey.shade400;
-        thirtIndexColor[7] = Colors.grey.shade400;
-        thirtIndexColor[8] = Colors.grey.shade400;
-        thirtIndexColor[9] = Colors.grey.shade400;
+        thirtIndexColor[0] = Color(0xffB50000);
+        thirtIndexColor[1] = Colors.white;
+        thirtIndexColor[2] = Colors.white;
+        thirtIndexColor[3] = Colors.white;
+        thirtIndexColor[4] = Colors.white;
+        thirtIndexColor[5] = Colors.white;
+        thirtIndexColor[6] = Colors.white;
+        thirtIndexColor[7] = Colors.white;
+        thirtIndexColor[8] = Colors.white;
+        thirtIndexColor[9] = Colors.white;
       });
     } else if (index == 1) {
       setState(() {
-        thirtIndexColor[0] = Color(0xFFF8F1E7);
-        thirtIndexColor[1] = Color(0xFFF8F1E7);
-        thirtIndexColor[2] = Colors.grey.shade400;
-        thirtIndexColor[3] = Colors.grey.shade400;
-        thirtIndexColor[4] = Colors.grey.shade400;
-        thirtIndexColor[5] = Colors.grey.shade400;
-        thirtIndexColor[6] = Colors.grey.shade400;
-        thirtIndexColor[7] = Colors.grey.shade400;
-        thirtIndexColor[8] = Colors.grey.shade400;
-        thirtIndexColor[9] = Colors.grey.shade400;
+        thirtIndexColor[0] = Colors.white;
+        thirtIndexColor[1] = Color(0xFFB50000);
+        thirtIndexColor[2] = Colors.white;
+        thirtIndexColor[3] = Colors.white;
+        thirtIndexColor[4] = Colors.white;
+        thirtIndexColor[5] = Colors.white;
+        thirtIndexColor[6] = Colors.white;
+        thirtIndexColor[7] = Colors.white;
+        thirtIndexColor[8] = Colors.white;
+        thirtIndexColor[9] = Colors.white;
       });
     } else if (index == 2) {
       setState(() {
-        thirtIndexColor[0] = Color(0xFFF8F1E7);
-        thirtIndexColor[1] = Color(0xFFF8F1E7);
+        thirtIndexColor[0] = Colors.white;
+        thirtIndexColor[1] = Colors.white;
         thirtIndexColor[2] = Color(0xFFF2E3CF);
-        thirtIndexColor[3] = Colors.grey.shade400;
-        thirtIndexColor[4] = Colors.grey.shade400;
-        thirtIndexColor[5] = Colors.grey.shade400;
-        thirtIndexColor[6] = Colors.grey.shade400;
-        thirtIndexColor[7] = Colors.grey.shade400;
-        thirtIndexColor[8] = Colors.grey.shade400;
-        thirtIndexColor[9] = Colors.grey.shade400;
+        thirtIndexColor[3] = Colors.white;
+        thirtIndexColor[4] = Colors.white;
+        thirtIndexColor[5] = Colors.white;
+        thirtIndexColor[6] = Colors.white;
+        thirtIndexColor[7] = Colors.white;
+        thirtIndexColor[8] = Colors.white;
+        thirtIndexColor[9] = Colors.white;
       });
     } else if (index == 3) {
       setState(() {
-        thirtIndexColor[0] = Color(0xFFF8F1E7);
-        thirtIndexColor[1] = Color(0xFFF8F1E7);
-        thirtIndexColor[2] = Color(0xFFF2E3CF);
+        thirtIndexColor[0] = Colors.white;
+        thirtIndexColor[1] = Colors.white;
+        thirtIndexColor[2] = Colors.white;
         thirtIndexColor[3] = Color(0xFFEFDCC4);
-        thirtIndexColor[4] = Colors.grey.shade400;
-        thirtIndexColor[5] = Colors.grey.shade400;
-        thirtIndexColor[6] = Colors.grey.shade400;
-        thirtIndexColor[7] = Colors.grey.shade400;
-        thirtIndexColor[8] = Colors.grey.shade400;
-        thirtIndexColor[9] = Colors.grey.shade400;
+        thirtIndexColor[4] = Colors.white;
+        thirtIndexColor[5] = Colors.white;
+        thirtIndexColor[6] = Colors.white;
+        thirtIndexColor[7] = Colors.white;
+        thirtIndexColor[8] = Colors.white;
+        thirtIndexColor[9] = Colors.white;
       });
     } else if (index == 4) {
       setState(() {
-        thirtIndexColor[0] = Color(0xFFF8F1E7);
-        thirtIndexColor[1] = Color(0xFFF8F1E7);
-        thirtIndexColor[2] = Color(0xFFF2E3CF);
-        thirtIndexColor[3] = Color(0xFFEFDCC4);
-        thirtIndexColor[4] = Color(0xFFEFDCC4);
-        thirtIndexColor[5] = Colors.grey.shade400;
-        thirtIndexColor[6] = Colors.grey.shade400;
-        thirtIndexColor[7] = Colors.grey.shade400;
-        thirtIndexColor[8] = Colors.grey.shade400;
-        thirtIndexColor[9] = Colors.grey.shade400;
+        thirtIndexColor[0] = Colors.white;
+        thirtIndexColor[1] = Colors.white;
+        thirtIndexColor[2] = Colors.white;
+        thirtIndexColor[3] = Colors.white;
+        thirtIndexColor[4] = Color(0xff67C23A);
+        thirtIndexColor[5] = Colors.white;
+        thirtIndexColor[6] = Colors.white;
+        thirtIndexColor[7] = Colors.white;
+        thirtIndexColor[8] = Colors.white;
+        thirtIndexColor[9] = Colors.white;
       });
     } else if (index == 5) {
       setState(() {
-        thirtIndexColor[0] = Color(0xFFF8F1E7);
-        thirtIndexColor[1] = Color(0xFFF8F1E7);
-        thirtIndexColor[2] = Color(0xFFF2E3CF);
-        thirtIndexColor[3] = Color(0xFFEFDCC4);
-        thirtIndexColor[4] = Color(0xFFEFDCC4);
-        thirtIndexColor[5] = Color(0xFFEFDCC4);
-        thirtIndexColor[6] = Colors.grey.shade400;
-        thirtIndexColor[7] = Colors.grey.shade400;
-        thirtIndexColor[8] = Colors.grey.shade400;
-        thirtIndexColor[9] = Colors.grey.shade400;
+        thirtIndexColor[0] = Colors.white;
+        thirtIndexColor[1] = Colors.white;
+        thirtIndexColor[2] = Colors.white;
+        thirtIndexColor[3] = Colors.white;
+        thirtIndexColor[4] = Colors.white;
+        thirtIndexColor[5] = Color(0xff67C23A);
+        thirtIndexColor[6] = Colors.white;
+        thirtIndexColor[7] = Colors.white;
+        thirtIndexColor[8] = Colors.white;
+        thirtIndexColor[9] = Colors.white;
       });
     } else if (index == 6) {
       setState(() {
-        thirtIndexColor[0] = Color(0xFFF8F1E7);
-        thirtIndexColor[1] = Color(0xFFF8F1E7);
-        thirtIndexColor[2] = Color(0xFFF2E3CF);
-        thirtIndexColor[3] = Color(0xFFEFDCC4);
-        thirtIndexColor[4] = Color(0xFFEFDCC4);
-        thirtIndexColor[5] = Color(0xFFEFDCC4);
-        thirtIndexColor[6] = Color(0xFFF0DAC0);
-        thirtIndexColor[7] = Colors.grey.shade400;
-        thirtIndexColor[8] = Colors.grey.shade400;
-        thirtIndexColor[9] = Colors.grey.shade400;
+        thirtIndexColor[0] = Colors.white;
+        thirtIndexColor[1] = Colors.white;
+        thirtIndexColor[2] = Colors.white;
+        thirtIndexColor[3] = Colors.white;
+        thirtIndexColor[4] = Colors.white;
+        thirtIndexColor[5] = Colors.white;
+        thirtIndexColor[6] = Color(0xffE6A23C);
+        thirtIndexColor[7] = Colors.white;
+        thirtIndexColor[8] = Colors.white;
+        thirtIndexColor[9] = Colors.white;
       });
     } else if (index == 7) {
       setState(() {
-        thirtIndexColor[0] = Color(0xFFF8F1E7);
-        thirtIndexColor[1] = Color(0xFFF8F1E7);
-        thirtIndexColor[2] = Color(0xFFF2E3CF);
-        thirtIndexColor[3] = Color(0xFFEFDCC4);
-        thirtIndexColor[4] = Color(0xFFEFDCC4);
-        thirtIndexColor[5] = Color(0xFFEFDCC4);
-        thirtIndexColor[6] = Color(0xFFF0DAC0);
-        thirtIndexColor[7] = Color(0xFFEED4B4);
-        thirtIndexColor[8] = Colors.grey.shade400;
-        thirtIndexColor[9] = Colors.grey.shade400;
+        thirtIndexColor[0] = Colors.white;
+        thirtIndexColor[1] = Colors.white;
+        thirtIndexColor[2] = Colors.white;
+        thirtIndexColor[3] = Colors.white;
+        thirtIndexColor[4] = Colors.white;
+        thirtIndexColor[5] = Colors.white;
+        thirtIndexColor[6] = Colors.white;
+        thirtIndexColor[7] = Color(0xffE6A23C);
+        thirtIndexColor[8] = Colors.white;
+        thirtIndexColor[9] = Colors.white;
       });
     } else if (index == 8) {
       setState(() {
-        thirtIndexColor[0] = Color(0xFFF8F1E7);
-        thirtIndexColor[1] = Color(0xFFF8F1E7);
-        thirtIndexColor[2] = Color(0xFFF2E3CF);
-        thirtIndexColor[3] = Color(0xFFEFDCC4);
-        thirtIndexColor[4] = Color(0xFFEFDCC4);
-        thirtIndexColor[5] = Color(0xFFEFDCC4);
-        thirtIndexColor[6] = Color(0xFFF0DAC0);
-        thirtIndexColor[7] = Color(0xFFEED4B4);
-        thirtIndexColor[8] = Color(0xFFF1D2AC);
-        thirtIndexColor[9] = Colors.grey.shade400;
+        thirtIndexColor[0] = Colors.white;
+        thirtIndexColor[1] = Colors.white;
+        thirtIndexColor[2] = Colors.white;
+        thirtIndexColor[3] = Colors.white;
+        thirtIndexColor[4] = Colors.white;
+        thirtIndexColor[5] = Colors.white;
+        thirtIndexColor[6] = Colors.white;
+        thirtIndexColor[7] = Colors.white;
+        thirtIndexColor[8] = Color(0xffF56C6C);
+        thirtIndexColor[9] = Colors.white;
       });
     } else if (index == 9) {
       setState(() {
-        thirtIndexColor[0] = Color(0xFFF8F1E7);
-        thirtIndexColor[1] = Color(0xFFF8F1E7);
-        thirtIndexColor[2] = Color(0xFFF2E3CF);
-        thirtIndexColor[3] = Color(0xFFEFDCC4);
-        thirtIndexColor[4] = Color(0xFFEFDCC4);
-        thirtIndexColor[5] = Color(0xFFEFDCC4);
-        thirtIndexColor[6] = Color(0xFFF0DAC0);
-        thirtIndexColor[7] = Color(0xFFEED4B4);
-        thirtIndexColor[8] = Color(0xFFF1D2AC);
-        thirtIndexColor[9] = Color(0xFFF1CC9D);
+        thirtIndexColor[0] = Colors.white;
+        thirtIndexColor[1] = Colors.white;
+        thirtIndexColor[2] = Colors.white;
+        thirtIndexColor[3] = Colors.white;
+        thirtIndexColor[4] = Colors.white;
+        thirtIndexColor[5] = Colors.white;
+        thirtIndexColor[6] = Colors.white;
+        thirtIndexColor[7] = Colors.white;
+        thirtIndexColor[8] = Colors.white;
+        thirtIndexColor[9] = Color(0xffF56C6C);
       });
     }
   }
-  //
+  
 
 }

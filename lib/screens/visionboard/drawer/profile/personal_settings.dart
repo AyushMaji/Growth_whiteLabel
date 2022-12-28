@@ -36,7 +36,8 @@ String _selected = 'Male';
 final _items = [
     'Male',
     'Female',
-    'Non-Binary'
+    'Non-Binary',
+    'Opt-out'
   ];
 
   // String countrycodenewNew = "";

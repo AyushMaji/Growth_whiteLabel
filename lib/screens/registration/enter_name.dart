@@ -37,8 +37,7 @@ class _EnterNameState extends State<EnterName> {
   void initState() {
     // Provider.of<StorageProvider>(context, listen: false).isAudio==true? speak(getTranslated('enter_name_intro', context)+"What is your first name",):speak("") ;
     Provider.of<StorageProvider>(context, listen: false).audioSpeak(
-        "Hello, my name is Olga and I will help you to express your ultimate-self, to achieve your  dreams, hopes and goals and coach you to become all that you want to be." +
-            "What is your first name");
+        "Hello, my name is Olga. WELCOME TO THE GROWTH PROGRAM, YOUR TOOL FOR MAKING POSITIVE CHANGE IN YOUR LIFE. Please start by telling us your first name.");
     String name = Provider.of<StorageProvider>(context, listen: false).name;
      List<String> names = name.split(" "); // ["John", "Doe"]
 
@@ -91,7 +90,8 @@ class _EnterNameState extends State<EnterName> {
                     SizedBox(width: 10.w),
                     Flexible(
                       child: Text(
-                        getTranslated('enter_name_intro', context),
+                       // getTranslated('enter_name_intro', context),
+                       "Hello, my name is Olga. WELCOME TO THE GROWTH PROGRAM, YOUR TOOL FOR MAKING POSITIVE CHANGE IN YOUR LIFE.",
                         textAlign: TextAlign.left,
                         style: TextStyles.smallBoldTextStyle(context),
                       ),
@@ -106,9 +106,12 @@ class _EnterNameState extends State<EnterName> {
                 SizedBox(height: 20.h),
                 Row(
                   children: [
-                    Text(
-                      getTranslated('first_name_question', context),
-                      style: TextStyles.questionTextStyle(context),
+                    Flexible(
+                      child: Text(
+                       // getTranslated('first_name_question', context),
+                       "Please start by telling us your first name.",
+                        style: TextStyles.questionTextStyle(context),
+                      ),
                     ),
                   ],
                 ),
@@ -212,7 +215,7 @@ class _EnterNameState extends State<EnterName> {
                                     title:
                                         getTranslated("enter_small", context),
                                     onPressed: () {
-                                        Provider.of<StorageProvider>(context, listen: false).audioSpeak( "Hi ${storeValues.name} , the main task in life is to make change from a position of 'self - knowledge' and 'strength'. I know you have solutions within you and I will work with you to set your goals and pinpoint the steps you will take and the skills to ensure your success.");
+                                        Provider.of<StorageProvider>(context, listen: false).audioSpeak( "Hi ${storeValues.name} , Change can be tricky, and the plan of the \"GROWTH\" program is to support you along the way to secure your success.");
                                       print(
                                           "inputed user name ===>>> ${_lastNameContoller.text}");
                                       setState(() {
@@ -284,7 +287,7 @@ class _EnterNameState extends State<EnterName> {
                           Flexible(
                             child: Text(
                               //"Hi ,"+ storeValues.name+getTranslated('the_main_task_inlife', context),
-                              'Hi ${storeValues.name}, ${getTranslated('the_main_task_inlife', context)}',
+                              'Hi ${storeValues.name}, Change can be tricky, and the plan of the \"GROWTH\" program is to support you along the way to secure your success.',
                               textAlign: TextAlign.left,
                               style: TextStyles.smallBoldTextStyle(context),
                             ),

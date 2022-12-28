@@ -7,6 +7,7 @@ import 'package:olga/global/methods/methods.dart';
 import 'package:olga/global/styles/text_styles.dart';
 import 'package:olga/global/widgets/rectangle_box.dart';
 import 'package:olga/global/widgets/richtext.dart';
+import 'package:olga/models/data_model/affirmation_model.dart';
 import 'package:olga/provider/auth_provider.dart';
 import 'package:olga/provider/storage_provider.dart';
 import 'package:provider/provider.dart';
@@ -637,6 +638,7 @@ class _PhysicalSelfcareState extends State<GoalSteps> {
       _testingGoalStepsSuggestions = ["Nothing found"];
     }
   }
+  bool AffirmationToSupportMindset= false;
 
   @override
   Widget build(BuildContext context) {
@@ -653,11 +655,15 @@ class _PhysicalSelfcareState extends State<GoalSteps> {
           builder: (context) {
             return Consumer<StorageProvider>(
                 builder: (context, storeValues, child) {
+                    List<String> skillsQualitiesNeedDevelop = storeValues.skillsDeveloptWordList;
+                  
+                  //
               return SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    // for (var i = 0; i < skillsQualitiesNeedDevelop.length; i++) Text("• ${skillsQualitiesNeedDevelop[i]}"),
                     Stack(
                       children: [
                         Column(
@@ -1134,68 +1140,142 @@ class _PhysicalSelfcareState extends State<GoalSteps> {
                                                                       _testingSpecifySuggestions!)
                         ],
                       ),
-                    //===>>> Different text if Main goal is  empty
-                    if (mindSet.isEmpty && myMainGoal.isNotEmpty)
-                      Column(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CustomRichText(
-                              titleText: 'Mindset ',
-                              description:
-                                  'A daily affirmation to protect the goal to help you stay on track.',
+                    
+                    //!====
+                        if (skillsQualitiesNeedDevelop.isNotEmpty && myMainGoal.isNotEmpty)
+                          Visibility(
+                            visible: !AffirmationToSupportMindset,
+                            child: Column(
+                              children: [
+                                 Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: CustomRichText(
+                                    titleText: 'Mindset : ',
+                                    description:
+                                        'I will develop the following skills for my $goalCategotyName', // "Active your $goalCategotyName goal",
+                                  ),
+                                ),
+                              
+                                Container(
+                              height: 40.h,
+                              width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      // border: Border.all(
+                                      //   color: Colors.white,
+                                      // ), // ===>>> input text
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    margin: EdgeInsets.all(13.sp),
+                                    child:
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(children: [
+                                         for (var i = 0; i < skillsQualitiesNeedDevelop.length; i++) Container(
+                                           decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text("${skillsQualitiesNeedDevelop[i]}"),
+                                          )),
+                                      ],),
+                                    )
+                              ),
+                          
+                          
+                             Padding(
+                               padding: const EdgeInsets.symmetric(horizontal:8.0),
+                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                 children: [
+                                   TextButton(
+                                    onPressed: (){
+                                      setState(() {
+                                        AffirmationToSupportMindset =true;
+                                      });
+                                    },
+                                                      style: TextButton.styleFrom(
+                                                        minimumSize: Size.zero,
+                                                        padding: EdgeInsets.only(right: 17.w, bottom: 17.h),
+                                                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                                      ), child: Text( "Continue",
+                                  style: TextStyles.smallWhiteBoldTextStyle(context),),
+                                      ),
+                                 ],
+                               ),
+                             )
+                              ],
                             ),
                           ),
-                          // storeValues.oneSelectedAreaId == "1"
-                          //     ? _buildTextFieldWithSuggessions(
-                          //         _careerAffirmationSuggestions!)
-                          //     : _storeValues.oneSelectedAreaId == "2"
-                          //         ? _buildTextFieldWithSuggessions(
-                          //             _emotionalAffirmationSuggestions!)
-                          //         : _buildTextFieldWithSuggessions(
-                          //             _testingAffirmationSuggestions!),
-                          storeValues.oneSelectedAreaId == "1"
-                              ? _buildTextFieldWithSuggessions(
-                                  _careerAffirmationSuggestions!)
-                              : storeValues.oneSelectedAreaId == "2"
-                                  ? _buildTextFieldWithSuggessions(
-                                      _emotionalAffirmationSuggestions!)
-                                  : storeValues.oneSelectedAreaId == "3"
-                                      ? _buildTextFieldWithSuggessions(
-                                          _familyAffirmationSuggestions!)
-                                      : storeValues.oneSelectedAreaId == "4"
-                                          ? _buildTextFieldWithSuggessions(
-                                              _financesAffirmationSuggestions!)
-                                          : storeValues.oneSelectedAreaId == "5"
-                                              ? _buildTextFieldWithSuggessions(
-                                                  _friendsAffirmationSuggestions!)
-                                              : storeValues.oneSelectedAreaId ==
-                                                      "6"
-                                                  ? _buildTextFieldWithSuggessions(
-                                                      _hobbiesAffirmationSuggestions!)
-                                                  : storeValues
-                                                              .oneSelectedAreaId ==
-                                                          "7"
-                                                      ? _buildTextFieldWithSuggessions(
-                                                          _livingsAffirmationSuggestions!)
-                                                      : storeValues
-                                                                  .oneSelectedAreaId ==
-                                                              "8"
-                                                          ? _buildTextFieldWithSuggessions(
-                                                              _physicalHAffirmationSuggestions!)
-                                                          : storeValues
-                                                                      .oneSelectedAreaId ==
-                                                                  "9"
-                                                              ? _buildTextFieldWithSuggessions(
-                                                                  _romanceAffirmationSuggestions!)
-                                                              : storeValues
-                                                                          .oneSelectedAreaId ==
-                                                                      "10"
-                                                                  ? _buildTextFieldWithSuggessions(
-                                                                      _spiritualityAffirmationSuggestions!)
-                                                                  : _buildTextFieldWithSuggessions(
-                                                                      _testingAffirmationSuggestions!)
-                        ],
+
+//!====
+                    
+                    //===>>> Different text if Main goal is  empty
+                    if (mindSet.isEmpty && myMainGoal.isNotEmpty )
+                      Visibility(
+                        visible: AffirmationToSupportMindset,
+                        child: Column(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: CustomRichText(
+                                titleText: 'Mindset ',
+                                description:
+                                    'A daily affirmation to protect the goal to help you stay on track.',
+                              ),
+                            ),
+                            // storeValues.oneSelectedAreaId == "1"
+                            //     ? _buildTextFieldWithSuggessions(
+                            //         _careerAffirmationSuggestions!)
+                            //     : _storeValues.oneSelectedAreaId == "2"
+                            //         ? _buildTextFieldWithSuggessions(
+                            //             _emotionalAffirmationSuggestions!)
+                            //         : _buildTextFieldWithSuggessions(
+                            //             _testingAffirmationSuggestions!),
+                            storeValues.oneSelectedAreaId == "1"
+                                ? _buildTextFieldWithSuggessions(
+                                    _careerAffirmationSuggestions!)
+                                : storeValues.oneSelectedAreaId == "2"
+                                    ? _buildTextFieldWithSuggessions(
+                                        _emotionalAffirmationSuggestions!)
+                                    : storeValues.oneSelectedAreaId == "3"
+                                        ? _buildTextFieldWithSuggessions(
+                                            _familyAffirmationSuggestions!)
+                                        : storeValues.oneSelectedAreaId == "4"
+                                            ? _buildTextFieldWithSuggessions(
+                                                _financesAffirmationSuggestions!)
+                                            : storeValues.oneSelectedAreaId == "5"
+                                                ? _buildTextFieldWithSuggessions(
+                                                    _friendsAffirmationSuggestions!)
+                                                : storeValues.oneSelectedAreaId ==
+                                                        "6"
+                                                    ? _buildTextFieldWithSuggessions(
+                                                        _hobbiesAffirmationSuggestions!)
+                                                    : storeValues
+                                                                .oneSelectedAreaId ==
+                                                            "7"
+                                                        ? _buildTextFieldWithSuggessions(
+                                                            _livingsAffirmationSuggestions!)
+                                                        : storeValues
+                                                                    .oneSelectedAreaId ==
+                                                                "8"
+                                                            ? _buildTextFieldWithSuggessions(
+                                                                _physicalHAffirmationSuggestions!)
+                                                            : storeValues
+                                                                        .oneSelectedAreaId ==
+                                                                    "9"
+                                                                ? _buildTextFieldWithSuggessions(
+                                                                    _romanceAffirmationSuggestions!)
+                                                                : storeValues
+                                                                            .oneSelectedAreaId ==
+                                                                        "10"
+                                                                    ? _buildTextFieldWithSuggessions(
+                                                                        _spiritualityAffirmationSuggestions!)
+                                                                    : _buildTextFieldWithSuggessions(
+                                                                        _testingAffirmationSuggestions!)
+                          ],
+                        ),
                       ),
                     //===>>> Different text if Main goal is  empty
                     if (assurance.isEmpty && mindSet.isNotEmpty)
@@ -1457,140 +1537,143 @@ class _PhysicalSelfcareState extends State<GoalSteps> {
                                                                   _spiritualityGoalStepsSuggestions!)
                                                               : _buildTextFieldWithSuggessions(
                                                                   _testingGoalStepsSuggestions!),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        minimumSize: Size.zero,
-                        padding: EdgeInsets.only(right: 17.w, bottom: 17.h),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          if (myMainGoal.isEmpty) {
-                            myMainGoal = commonGoalControler.text;
-                            storeValues.changeMainGoal(myMainGoal);
-                          } else if (mindSet.isEmpty && myMainGoal.isNotEmpty) {
-                            mindSet = commonGoalControler.text;
-                            storeValues.changeMindsetl(mindSet);
-                          } else if (assurance.isEmpty && mindSet.isNotEmpty) {
-                            assurance = commonGoalControler.text;
-                            storeValues.changeAssurance(assurance);
-                          } else if (firstGoal.isEmpty && assurance.isNotEmpty) {
-                            firstGoal = commonGoalControler.text;
-                            storeValues.changeFirstGoal(firstGoal);
-                          } else if (secondGoal.isEmpty && firstGoal.isNotEmpty) {
-                            secondGoal = commonGoalControler.text;
-                            storeValues.changeSecondGoal(secondGoal);
-                          } else if (thirdGoal.isEmpty && secondGoal.isNotEmpty) {
-                            thirdGoal = commonGoalControler.text;
-                            storeValues.changeThirdGoal(thirdGoal);
-                          } else if (fourthGoal.isEmpty && thirdGoal.isNotEmpty) {
-                            fourthGoal = commonGoalControler.text;
-                            storeValues.changeFourthGoal(fourthGoal);
-                          } else if (fifthGoal.isEmpty && fourthGoal.isNotEmpty) {
-                            setState(() {
-                              fifthGoal = commonGoalControler.text;
-                              storeValues.changeFifthGoal(fifthGoal);
-                              goPageWithName(context, TrackYourGoal.id);
-                              print("button ready to work");
-                            });
-                          }
-                          commonGoalControler.clear();
-                        });
-                      },
-                      child: SizedBox(
-                        height: 40.h,
-                        child: Column(
-                          children: [
-                            if (myMainGoal.isEmpty)
-                              Text(
-                                "Continue",
-                                style: TextStyles.smallWhiteBoldTextStyle(context),
-                              ),
-                            if (mindSet.isEmpty && myMainGoal.isNotEmpty)
-                              Text(
-                                "Continue",
-                                style: TextStyles.smallWhiteBoldTextStyle(context),
-                              ),
-                            if (assurance.isEmpty && mindSet.isNotEmpty)
-                              Text(
-                                "Continue",
-                                style: TextStyles.smallWhiteBoldTextStyle(context),
-                              ),
-                            if (firstGoal.isEmpty && assurance.isNotEmpty)
-                              Text(
-                                "Add New Step",
-                                style: TextStyles.smallWhiteBoldTextStyle(context),
-                              ),
-                            if (secondGoal.isEmpty && firstGoal.isNotEmpty)
-                              Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "Add New Step",
-                                    style: TextStyles.smallWhiteBoldTextStyle(context),
-                                  ),
-                                  SizedBox(width: 10.h),
-                                  InkWell(
-                                    onTap: (){
-                                      goPage(context, const TrackYourGoal());
-                                    },
-                                    child: Text(
-                                      "Submit",
+                     Visibility(
+                        visible: myMainGoal.isEmpty?true: AffirmationToSupportMindset,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          minimumSize: Size.zero,
+                          padding: EdgeInsets.only(right: 17.w, bottom: 17.h),
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            if (myMainGoal.isEmpty) {
+                              myMainGoal = commonGoalControler.text;
+                              storeValues.changeMainGoal(myMainGoal);
+                            } else if (mindSet.isEmpty && myMainGoal.isNotEmpty) {
+                              mindSet = commonGoalControler.text;
+                              storeValues.changeMindsetl(mindSet);
+                            } else if (assurance.isEmpty && mindSet.isNotEmpty) {
+                              assurance = commonGoalControler.text;
+                              storeValues.changeAssurance(assurance);
+                            } else if (firstGoal.isEmpty && assurance.isNotEmpty) {
+                              firstGoal = commonGoalControler.text;
+                              storeValues.changeFirstGoal(firstGoal);
+                            } else if (secondGoal.isEmpty && firstGoal.isNotEmpty) {
+                              secondGoal = commonGoalControler.text;
+                              storeValues.changeSecondGoal(secondGoal);
+                            } else if (thirdGoal.isEmpty && secondGoal.isNotEmpty) {
+                              thirdGoal = commonGoalControler.text;
+                              storeValues.changeThirdGoal(thirdGoal);
+                            } else if (fourthGoal.isEmpty && thirdGoal.isNotEmpty) {
+                              fourthGoal = commonGoalControler.text;
+                              storeValues.changeFourthGoal(fourthGoal);
+                            } else if (fifthGoal.isEmpty && fourthGoal.isNotEmpty) {
+                              setState(() {
+                                fifthGoal = commonGoalControler.text;
+                                storeValues.changeFifthGoal(fifthGoal);
+                                goPageWithName(context, TrackYourGoal.id);
+                                print("button ready to work");
+                              });
+                            }
+                            commonGoalControler.clear();
+                          });
+                        },
+                        child: SizedBox(
+                          height: 40.h,
+                          child: Column(
+                            children: [
+                              if (myMainGoal.isEmpty)
+                                Text(
+                                  "Continue",
+                                  style: TextStyles.smallWhiteBoldTextStyle(context),
+                                ),
+                              if (mindSet.isEmpty && myMainGoal.isNotEmpty)
+                                Text(
+                                  "Continue",
+                                  style: TextStyles.smallWhiteBoldTextStyle(context),
+                                ),
+                              if (assurance.isEmpty && mindSet.isNotEmpty)
+                                Text(
+                                  "Continue",
+                                  style: TextStyles.smallWhiteBoldTextStyle(context),
+                                ),
+                              if (firstGoal.isEmpty && assurance.isNotEmpty)
+                                Text(
+                                  "Add New Step",
+                                  style: TextStyles.smallWhiteBoldTextStyle(context),
+                                ),
+                              if (secondGoal.isEmpty && firstGoal.isNotEmpty)
+                                Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      "Add New Step",
                                       style: TextStyles.smallWhiteBoldTextStyle(context),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            if (thirdGoal.isEmpty && secondGoal.isNotEmpty)
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [                           
-                                  Text(
-                                    "Add New Step",
-                                    style: TextStyles.smallWhiteBoldTextStyle(context),
-                                  ),
-                                  SizedBox(width: 10.h),
-                                  InkWell(
-                                  onTap: (){
-                                   goPage(context, const TrackYourGoal());
-                                  },
-                                    child: Text(
-                                      "Submit",
-                                      style: TextStyles.smallWhiteBoldTextStyle(context),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            if (fourthGoal.isEmpty && thirdGoal.isNotEmpty)
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [                              
-                                  Text(
-                                    "Add New Step",
-                                    style: TextStyles.smallWhiteBoldTextStyle(
-                                        context),
-                                  ),
-                                  const SizedBox(width: 10),
-                                   InkWell(
-                                    onTap: () {
-                                      setState(() {
+                                    SizedBox(width: 10.h),
+                                    InkWell(
+                                      onTap: (){
                                         goPage(context, const TrackYourGoal());
-                                      });
+                                      },
+                                      child: Text(
+                                        "Submit",
+                                        style: TextStyles.smallWhiteBoldTextStyle(context),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              if (thirdGoal.isEmpty && secondGoal.isNotEmpty)
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [                           
+                                    Text(
+                                      "Add New Step",
+                                      style: TextStyles.smallWhiteBoldTextStyle(context),
+                                    ),
+                                    SizedBox(width: 10.h),
+                                    InkWell(
+                                    onTap: (){
+                                     goPage(context, const TrackYourGoal());
                                     },
-                                    child: Text(
-                                      "Submit",
-                                      style: TextStyles.smallGoldBoldTextStyle(
+                                      child: Text(
+                                        "Submit",
+                                        style: TextStyles.smallWhiteBoldTextStyle(context),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              if (fourthGoal.isEmpty && thirdGoal.isNotEmpty)
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [                              
+                                    Text(
+                                      "Add New Step",
+                                      style: TextStyles.smallWhiteBoldTextStyle(
                                           context),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            if (fifthGoal.isEmpty && fourthGoal.isNotEmpty)
-                              Text(
-                                "Submit",
-                                style: TextStyles.smallGoldBoldTextStyle(context),
-                              ),
-                          ],
+                                    const SizedBox(width: 10),
+                                     InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          goPage(context, const TrackYourGoal());
+                                        });
+                                      },
+                                      child: Text(
+                                        "Submit",
+                                        style: TextStyles.smallGoldBoldTextStyle(
+                                            context),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              if (fifthGoal.isEmpty && fourthGoal.isNotEmpty)
+                                Text(
+                                  "Submit",
+                                  style: TextStyles.smallGoldBoldTextStyle(context),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

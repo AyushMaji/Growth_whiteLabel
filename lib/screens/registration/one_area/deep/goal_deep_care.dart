@@ -40,7 +40,7 @@ class _GoalDeepCareState extends State<GoalDeepCare> {
     super.initState();
     Provider.of<StorageProvider>(context, listen: false).registrationSafetyNet(route: GoalDeepCare.id);
     StorageProvider storageValue =Provider.of<StorageProvider>(context, listen: false);
-    Provider.of<StorageProvider>(context, listen: false).audioSpeak("Imagine that you wake up in the morning and that your ${storageValue.oneSelectedArea} are exactly how you would like them to be. By building your emotional skills and capabilities you will create clear pathways to ensure the cost of change does not outweigh the benefits!  So with that in mind, write one sentence on what the BENEFITS will be for you, if you accomplish this goal?  ");
+    Provider.of<StorageProvider>(context, listen: false).audioSpeak("Imagine that you wake up in the morning and that your ${storageValue.oneSelectedArea} are exactly how you would like them to be. Visualise what that looks like and that it has already happened. Don't worry about how you will get there, just write it down.  ");
   }
 
   @override
@@ -65,15 +65,18 @@ class _GoalDeepCareState extends State<GoalDeepCare> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 10.h),
-                      Padding(
-                        padding: EdgeInsets.only(left: 3.w),
-                        child: Image.asset(
-                          Images.lifeScaleFlip2,
-                          width: 80.w,
+                      Flexible(
+                          child: Padding(
+                             padding: EdgeInsets.only(left: 3.w),
+                            child: Image.asset(
+                                   Images.userPlaceholder,
+                                    width: 60.w,
+                                  ),
+                          ),
                         ),
-                      ),
                       SizedBox(width: 10.w),
                       Flexible(
+                        flex: 4,
                         child: Padding(
                           padding: EdgeInsets.only(right: 15.w),
                           child:
@@ -123,17 +126,18 @@ class _GoalDeepCareState extends State<GoalDeepCare> {
                         RichText(
                           text: TextSpan(
                             text:
-                                getTranslated('so_with_that_in_mind', context),
+                               // getTranslated('so_with_that_in_mind', context),
+                               "Don't worry about how you will get there, just write it down.",
                             style: TextStyles.regularBoldTextStyle(context),
                             children: [
-                              TextSpan(
-                                text: getTranslated('benefits', context),
-                                style: TextStyles.smallBoldTextStyle(context),
-                              ),
-                              TextSpan(
-                                text: getTranslated('will_be_for_you', context),
-                                style: TextStyles.regularBoldTextStyle(context),
-                              ),
+                              // TextSpan(
+                              //   text: getTranslated('benefits', context),
+                              //   style: TextStyles.smallBoldTextStyle(context),
+                              // ),
+                              // TextSpan(
+                              //   text: getTranslated('will_be_for_you', context),
+                              //   style: TextStyles.regularBoldTextStyle(context),
+                              // ),
                             ],
                           ),
                         ),
@@ -143,7 +147,7 @@ class _GoalDeepCareState extends State<GoalDeepCare> {
                          FocusScope(
                           onFocusChange: (value) {
                             if (!value) {
-                               Provider.of<StorageProvider>(context, listen: false).audioSpeak("Now ask yourself, what will the PRICE be if you don't achieve this goal? Again, write one sentence for this. ");
+                              // Provider.of<StorageProvider>(context, listen: false).audioSpeak("Now ask yourself, what will the PRICE be if you don't achieve this goal? Again, write one sentence for this. ");
                             }
                           },
                           child: TextFormField(
@@ -172,49 +176,49 @@ class _GoalDeepCareState extends State<GoalDeepCare> {
                         ),
                         SizedBox(height: 20.sp),
                         //
-                        RichText(
-                          text: TextSpan(
-                            text: getTranslated('now_ask_yourself', context),
-                            style: TextStyles.regularBoldTextStyle(context),
-                            children: [
-                              TextSpan(
-                                text: getTranslated('price', context),
-                                style: TextStyles.smallBoldTextStyle(context),
-                              ),
-                              TextSpan(
-                                text: getTranslated('be_if_you', context),
-                                style: TextStyles.regularBoldTextStyle(context),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // RichText(
+                        //   text: TextSpan(
+                        //     text: getTranslated('now_ask_yourself', context),
+                        //     style: TextStyles.regularBoldTextStyle(context),
+                        //     children: [
+                        //       TextSpan(
+                        //         text: getTranslated('price', context),
+                        //         style: TextStyles.smallBoldTextStyle(context),
+                        //       ),
+                        //       TextSpan(
+                        //         text: getTranslated('be_if_you', context),
+                        //         style: TextStyles.regularBoldTextStyle(context),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
 
-                        SizedBox(height: 15.sp),
-                        TextFormField(
-                          controller: _priceController,
-                          //expands: true,
-                          maxLines: 3,
-                          decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFDEB988), width: 2.0),
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            helperMaxLines: 4,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty)
-                              return "This field also required";
+                        // SizedBox(height: 15.sp),
+                        // TextFormField(
+                        //   controller: _priceController,
+                        //   //expands: true,
+                        //   maxLines: 3,
+                        //   decoration: InputDecoration(
+                        //     focusedBorder: OutlineInputBorder(
+                        //       borderSide: const BorderSide(
+                        //           color: Color(0xFFDEB988), width: 2.0),
+                        //       borderRadius: BorderRadius.circular(5.0),
+                        //     ),
+                        //     helperMaxLines: 4,
+                        //     border: OutlineInputBorder(
+                        //       borderRadius: BorderRadius.circular(5),
+                        //     ),
+                        //   ),
+                        //   validator: (value) {
+                        //     if (value!.isEmpty)
+                        //       return "This field also required";
 
-                            return null;
-                          },
-                          onChanged: (value) {
-                            print("typying === >>> $value");
-                          },
-                        ),
+                        //     return null;
+                        //   },
+                        //   onChanged: (value) {
+                        //     print("typying === >>> $value");
+                        //   },
+                        // ),
                         SizedBox(height: 50.sp),
                       ],
                     ),
@@ -234,7 +238,8 @@ class _GoalDeepCareState extends State<GoalDeepCare> {
                 Provider.of<StorageProvider>(context, listen: false);
             if (_formKey.currentState!.validate()) {
               storeValues.updateBeneefits(_beneefitsController.text);
-              storeValues.updatePrice(_priceController.text);
+             // storeValues.updatePrice(_priceController.text);
+              storeValues.updatePrice("Price for achivieng my goal");
               goPageWithName(context, ImportantOfGoal.id);
               print('=========wrong is here ===========');
             }

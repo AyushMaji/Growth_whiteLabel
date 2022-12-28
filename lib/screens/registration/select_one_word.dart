@@ -32,6 +32,15 @@ class _SelectOneWordState extends State<SelectOneWord> {
     "Relaxed",
     "Satisfied with my Life",
     "Strong",
+
+    "Excited",
+    "Content",
+    "Fulfilled",
+    "Prosperous",
+    "Affluent",
+    "Thriving",
+    "Carefree",
+    "Organised"
   ];
 
   @override
@@ -76,13 +85,14 @@ class _SelectOneWordState extends State<SelectOneWord> {
             Expanded(
               child: GridView.builder(
                   scrollDirection: Axis.vertical,
+                  physics: BouncingScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 3,
                     mainAxisSpacing: 2,
                     childAspectRatio: (16 / 8),
                   ),
-                  itemCount: 8,
+                  itemCount: _wordName.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -136,31 +146,51 @@ class _SelectOneWordState extends State<SelectOneWord> {
                     );
                   }),
             ),
+
+             Visibility(
+        visible: showButton,
+        child: PrimaryButton(
+          title: getTranslated("continue", context),
+          onPressed: () {
+            setState(() {
+              QuesResProvider quesResProvider =
+                  Provider.of<QuesResProvider>(context, listen: false);
+              Provider.of<StorageProvider>(context, listen: false)
+                  .registrationSafetyNet(route: OneWordResult.id);
+              quesResProvider.oneWordBestCapture(
+                  wordId: selectedIndex ?? 0, context: context);
+              print("button called the navigator fuction");
+              print("going to page ===>>> $selectedIndex");
+              //goPage(context, const OneWordResult());
+            });
+          },
+        ),
+      ),
           ],
         ),
       ),
-      bottomSheet: Visibility(
-        visible: showButton,
-        child: Padding(
-          padding: EdgeInsets.all(15.sp),
-          child: PrimaryButton(
-            title: getTranslated("continue", context),
-            onPressed: () {
-              setState(() {
-                QuesResProvider quesResProvider =
-                    Provider.of<QuesResProvider>(context, listen: false);
-                Provider.of<StorageProvider>(context, listen: false)
-                    .registrationSafetyNet(route: OneWordResult.id);
-                quesResProvider.oneWordBestCapture(
-                    wordId: selectedIndex ?? 0, context: context);
-                print("button called the navigator fuction");
-                print("going to page ===>>> $selectedIndex");
-                //goPage(context, const OneWordResult());
-              });
-            },
-          ),
-        ),
-      ),
+      // bottomSheet: Visibility(
+      //   visible: showButton,
+      //   child: Padding(
+      //     padding: EdgeInsets.all(15.sp),
+      //     child: PrimaryButton(
+      //       title: getTranslated("continue", context),
+      //       onPressed: () {
+      //         setState(() {
+      //           QuesResProvider quesResProvider =
+      //               Provider.of<QuesResProvider>(context, listen: false);
+      //           Provider.of<StorageProvider>(context, listen: false)
+      //               .registrationSafetyNet(route: OneWordResult.id);
+      //           quesResProvider.oneWordBestCapture(
+      //               wordId: selectedIndex ?? 0, context: context);
+      //           print("button called the navigator fuction");
+      //           print("going to page ===>>> $selectedIndex");
+      //           //goPage(context, const OneWordResult());
+      //         });
+      //       },
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

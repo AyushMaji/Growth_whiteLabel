@@ -405,12 +405,12 @@ class _MyGoalDetailsState extends State<MyGoalDetails> {
                     Text("${_visionBoard.storeGoalData.data?.goals?[_storeProvider.goalIndex].achieveGoal}"),
                  
                     //
-                    SizedBox(height: 10.h),
-                    Text(getTranslated("what_will_the_price", context),
-                            style: TextStyles.boldTextStyle(context)),
-                    SizedBox(height: 10.sp),
-                    Text("${_visionBoard.storeGoalData.data?.goals?[_storeProvider.goalIndex].priceUnachieveGoal}"),
-                    SizedBox(height: 10.h),
+                     SizedBox(height: 10.h),
+                    // Text(getTranslated("what_will_the_price", context),
+                    //         style: TextStyles.boldTextStyle(context)),
+                    // SizedBox(height: 10.sp),
+                    // Text("${_visionBoard.storeGoalData.data?.goals?[_storeProvider.goalIndex].priceUnachieveGoal}"),
+                    // SizedBox(height: 10.h),
                     
                     //
                     Text(getTranslated("what_qualities_have_to_support", context),

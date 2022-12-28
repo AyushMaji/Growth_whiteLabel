@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:olga/provider/ques_res_provider.dart';
@@ -21,6 +22,11 @@ class LifeWheel extends StatefulWidget {
 }
 
 class _LifeWheelState extends State<LifeWheel> {
+  void resetColors() {
+  for (int i = 0; i < colors.length; i++) {
+    colors[i] = Colors.white;
+  }
+}
   //
   List<Color> palette = const <Color>[
     Color.fromRGBO(75, 135, 185, 1),
@@ -92,6 +98,7 @@ class _LifeWheelState extends State<LifeWheel> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const DeeperWidget(),
+              SizedBox(height: 10.h,),
               Text(
                 initialText,
                 style: TextStyles.smallBoldTextStyle(context),
@@ -102,39 +109,110 @@ class _LifeWheelState extends State<LifeWheel> {
                 children: [
                   Container(
                     // width: 163,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      //color: Colors.green,
-                      border: Border.all(
-                        color: Color(0xff8E8E8E),
-                      ),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    margin: EdgeInsets.only(top: 10),
+                  //  height: 40,
+                 
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: DropdownButton<String>(
-                        hint: Text("Select",),
-                        underline: Container(),
-                        icon: Icon(Icons.keyboard_arrow_down),
-                        iconSize: 24,
-                        isExpanded: true,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedValue = value!;
-                          });
-                        },
-                        value: selectedValue,
-                        items: allValues
-                            .map((state) => DropdownMenuItem(
-                                  value: state,
-                                  child: Text(
-                                    state,
-                                    maxLines: 2,
-                                  ),
-                                ))
-                            .toList(),
+                      padding: const EdgeInsets.only(top:12.0,bottom: 12),
+                      child: 
+                      // DropdownButton<String>(
+                      //   hint: Text("Select",),
+                      //   underline: Container(),
+                      //   icon: Icon(Icons.keyboard_arrow_down),
+                      //   iconSize: 24,
+                      //   isExpanded: true,
+                      //   onChanged: (value) {
+                      //     setState(() {
+                      //       selectedValue = value!;
+                      //     });
+                      //   },
+                      //   value: selectedValue,
+                      //   items: allValues
+                      //       .map((state) => DropdownMenuItem(
+                      //             value: state,
+                      //             child: Text(
+                      //               state,
+                      //               maxLines: 2,
+                      //             ),
+                      //           ))
+                      //       .toList(),
+                      // ),
+                      //!=========================================== Round Round scale value======================================================
+                      // SizedBox(
+                      //     height: 20.h,
+                      //     width: MediaQuery.of(context).size.width,
+                      //     child: ListView.builder(
+                      //       itemExtent: 35.5.w,
+                      //       shrinkWrap: true,
+                      //       scrollDirection: Axis.horizontal,
+                      //       physics: const NeverScrollableScrollPhysics(),
+                      //       itemCount: 10,
+                      //       itemBuilder: (BuildContext context, int index) {
+                      //         return InkWell(
+                      //           onTap: () {
+                      //             HapticFeedback.vibrate();
+                      //             setState(() {
+                      //               setColorsinIndex(index, context);
+                      //               selectedValue = index.toString();
+                      //               //_feedbackGiven = true;
+                      //               //absoreTap = true;
+                      //               //_storeValues.addLifeFeelValue(selectedValue);
+                      //             });
+                      //           },
+                      //           child: Container(
+                      //             height: 20,
+                      //             width: 30,
+                      //             child: Center(child: Text((index + 1).toString())),
+                      //              decoration: BoxDecoration(
+                      //               color: colors[index],
+                      //               shape: BoxShape.circle
+                      //             ),
+                      //           ),
+                      //         );
+                      //       },
+                      //     ),
+                      //   ),
+                     //!=========================================== Round Round scale value======================================================
+
+
+                      SizedBox(
+                        height: 20.h,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                          itemExtent: 33.w,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 10,
+                          itemBuilder: (BuildContext context, int index) {
+                            return InkWell(
+                              onTap: () {
+                                 HapticFeedback.vibrate();
+                                setState(() {
+                                  setColorsinIndex(index, context);
+                                  selectedValue = (index + 1).toString();
+                                });
+                              },
+                              child: Container(
+                                height: 20,
+                                width: 30,
+                               decoration: BoxDecoration(
+                                  color: colors[index],
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                  color: colorsForBorder[index],  // Border color
+                                  width: 1,  // Border width
+                                ),
+                                ),
+                                 child: Center(child: Text((index + 1).toString(),  style: TextStyle(
+                                 color: selectedValue == (index + 1).toString() ? Colors.white : colorsForBorder[index],  // Change text color based on selection
+                                ),)),
+                              ),
+                            );
+                          },
+                        ),
                       ),
+                     
+
                     ),
                   ),
 
@@ -238,6 +316,7 @@ class _LifeWheelState extends State<LifeWheel> {
                           }
                         });
                          selectedValue = null;
+                         resetColors();
                       },
                       title: getTranslated("continue", context),
                     ),
@@ -600,11 +679,173 @@ class _LifeWheelState extends State<LifeWheel> {
                  
                 ],
               ),
+              
             ],
           ),
         ),
       ),
     );
+  }
+
+
+   List<Color> colors = [
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+  ];
+
+   List<Color> colorsForBorder = [
+    Color(0xffB50000),
+    Color(0xffB50000),
+    Color(0xffDEB988),
+    Color(0xffDEB988),
+    Color(0xff67C23A),
+    Color(0xff67C23A),
+    Color(0xffE6A23C),
+    Color(0xffE6A23C),
+    Color(0xffF56C6C),
+    Color(0xffF56C6C),
+  ];
+
+  setColorsinIndex(index, BuildContext context) {
+    if (index == 0) {
+      setState(() {
+        colors[0] = Color(0xffB50000);
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
+      });
+    } else if (index == 1) {
+      setState(() {
+        colors[0] = Colors.white;
+        colors[1] = Color(0xffB50000);
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
+      });
+    } else if (index == 2) {
+      setState(() {
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Color(0xFFF2E3CF);
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
+      });
+    } else if (index == 3) {
+      setState(() {
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Color(0xFFEFDCC4);
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
+      });
+    } else if (index == 4) {
+      setState(() {
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Color(0xff67C23A);
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
+      });
+    } else if (index == 5) {
+      setState(() {
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Color(0xff67C23A);
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
+      });
+    } else if (index == 6) {
+      setState(() {
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Color(0xffE6A23C);
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
+      });
+    } else if (index == 7) {
+      setState(() {
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Color(0xffE6A23C);
+        colors[8] = Colors.white;
+        colors[9] = Colors.white;
+      });
+    } else if (index == 8) {
+      setState(() {
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Color(0xffF56C6C);
+        colors[9] = Colors.white;
+      });
+    } else if (index == 9) {
+      setState(() {
+        colors[0] = Colors.white;
+        colors[1] = Colors.white;
+        colors[2] = Colors.white;
+        colors[3] = Colors.white;
+        colors[4] = Colors.white;
+        colors[5] = Colors.white;
+        colors[6] = Colors.white;
+        colors[7] = Colors.white;
+        colors[8] = Colors.white;
+        colors[9] = Color(0xffF56C6C);
+      });
+    }
   }
 }
 

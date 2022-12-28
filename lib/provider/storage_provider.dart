@@ -11,7 +11,7 @@ class StorageProvider with ChangeNotifier {
   SharedPreferences prefs;
   StorageProvider(this.prefs);
 //!===================Text To speach =========================
-  bool _isAudio = false;
+  bool _isAudio = true;
   bool get isAudio => _isAudio;
   void changeAudio(isAudio) {
     _isAudio = isAudio;
@@ -196,6 +196,61 @@ class StorageProvider with ChangeNotifier {
   void updateResponse4(response4) {
     _response4 = response4;
     prefs.setInt("response4", response4);
+    notifyListeners();
+  }
+
+  //!===========================================================================
+  // response 5
+  int _response5 = 0;
+  int get response5 => _response5;
+  void updateResponse5(response5) {
+    _response5 = response5;
+    prefs.setInt("response5", response5);
+    notifyListeners();
+  }
+  //!===========================================================================
+  // response 6
+  int _response6 = 0;
+  int get response6 => _response6;
+  void updateResponse6(response6) {
+    _response6 = response6;
+    prefs.setInt("response6", response6);
+    notifyListeners();
+  }
+  //!===========================================================================
+  // response 7
+  int _response7 = 0;
+  int get response7 => _response7;
+  void updateResponse7(response7) {
+    _response7 = response7;
+    prefs.setInt("response7", response7);
+    notifyListeners();
+  }
+  //!===========================================================================
+  // response 8
+  int _response8 = 0;
+  int get response8 => _response8;
+  void updateResponse8(response8) {
+    _response8 = response8;
+    prefs.setInt("response8", response8);
+    notifyListeners();
+  }
+  //!===========================================================================
+  // response 9
+  int _response9 = 0;
+  int get response9 => _response9;
+  void updateResponse9(response9) {
+    _response9 = response9;
+    prefs.setInt("response9", response9);
+    notifyListeners();
+  }
+  //!===========================================================================
+  // response 10
+  int _response10 = 0;
+  int get response10 => _response10;
+  void updateResponse10(response10) {
+    _response10 = response10;
+    prefs.setInt("response10", response10);
     notifyListeners();
   }
 
